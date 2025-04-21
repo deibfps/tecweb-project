@@ -1,0 +1,12 @@
+:root {
+    /* Colores principales : */
+    --verdeMatcha: #628b35;
+    --hueso: #f6f5ef; /* Blanco */
+    --negro: #000000;
+    --verdeClaro: #aec892;
+
+    /* Tipografía */
+    --especial: 'Playfair Display', serif;
+    --titulos: 'League Gothic', sans-serif;
+    --texto: 'Montserrat', sans-serif;
+}
