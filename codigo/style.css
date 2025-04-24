@@ -1,5 +1,14 @@
 @import url('variables.css');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
 body {
     background-color: var(--hueso);
     margin: 0;
@@ -7,19 +16,22 @@ body {
 }
 
 body section{
-    padding: 1rem 5rem;
+    padding: 1rem 6rem;
 }
 
 body p {
     font-family: var(--texto);
     font-size: 1rem; /* Tamaño de fuente adaptable */
+    line-height: 1.5rem;
 }
 
 body h2 {
     font-family: var(--titulos);
-    font-size: 2rem; /* Tamaño de fuente adaptable */
+    font-size: 1.7rem; /* Tamaño de fuente adaptable */
+    font-weight: bold;
 }
 
+/* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
 body button {
     padding: .8rem 2rem;
     border: none;
@@ -35,13 +47,11 @@ body button {
     background-color: var(--hueso);
     border: .1rem solid var(--verdeMatcha);
     }
-    
     body button:hover {
         color: var(--hueso);
         transform: scale(1.1);
         box-shadow: 4px 5px 17px -4px var(--verdeMatcha);
     }
-    
     body button::before {
         content: "";
         position: absolute;
@@ -54,10 +64,10 @@ body button {
         z-index: -1;
         transition: width 1000ms;
     }
-    
     body button:hover::before {
         width: 250%;
     }
+/* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
     
 
 /* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
@@ -88,7 +98,7 @@ header nav ul {
     display: flex; /* Flexbox para alinear los enlaces horizontalmente */
     gap: 3rem; /* Espaciado entre los enlaces */
     margin: 0;
-    padding: 0 6rem;
+    padding: 0 3rem;
     
 }
 header nav ul li a {
@@ -107,18 +117,91 @@ header nav ul li a:hover {
 /* Fondo del banner */
 .BannerPrincipal {
     background-color: var(--verdeMatcha);
-    width: 86%; /* Ocupa todo el ancho */
-    height: 85vh; /* Altura del % de la ventana */
+    width: 100%; /* Ocupa todo el ancho */
+    height: 88vh; /* Altura del % de la ventana */
     display: flex;
     justify-content: center; /* Centra verticalmente */
     align-items: center; /* Centra horizontalmente */
     text-align: center;
     flex-direction: column;
+    overflow: hidden;
 }
 /* Color del texto */
 .BannerPrincipal h2{
     font-family: var(--especial);
     color: var(--hueso);
     font-size: 3.4rem;
+    padding-bottom: 1.5rem;
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE BANNER INICIAL'''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''ESTILO DE ECOFACTS1 '''''''''''''''''''''''''''''''''''''''''''''''''*/
+#EcoFacts {
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.TextoEco {
+    width: 68%;
+    padding-top: 3rem;
+    padding-left: 8rem;
+}
+.TextoEco li{
+    font-family: var(--texto);
+    margin-bottom: 1rem; 
+}
+.TextoEco h2{
+    font-family: var(--especial);
+    font-weight: bolder;
+    padding-bottom: 1.5rem
+}
+#ImagenEco {
+    width: 50%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+/* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS1 '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''ESTILO DE ECOFACTS2 '''''''''''''''''''''''''''''''''''''''''''''''''*/
+#EcoFacts2 {
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; 
+    padding-bottom: 3rem;
+}
+.TextoEco2 {
+    width: 68%;
+    padding-top: 3rem;
+    padding-left: 8rem;
+}
+.TextoEco2 h2{
+    font-family: var(--especial);
+    font-weight: bolder;
+    padding-bottom: 1.5rem
+}
+#ImagenEco2 {
+    width: 50%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+/* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS2 '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''KEEP IT GREEN SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+#K{
+    background-color: var(--verdeMatcha);
+    width: 100%; /* Ocupa todo el ancho */
+    text-align: center; 
+    color: var(--hueso);
+
+}
+
+#K p{
+    font-family: var(--especial);
+    padding: .5rem 0;
+    letter-spacing: .4rem;
+}
+
+/* ''''''''''''''''''''''''''FIN '''''''''''''''''''''''''''''''''''''''''''''''''*/
