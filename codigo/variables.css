@@ -1,3 +1,9 @@
+
+/* BASE CSS
+Este documento tiene como fin el poder agilizar el diseño, reutilizando variables
+para evitar usar colores dispersos o fuentes incorrectas, para poder hacer uso de él,
+vease el ejemplo de styleindex */
+
 :root {
     /* Colores principales : */
     --verdeMatcha: #628b35;

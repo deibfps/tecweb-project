@@ -1,0 +1,63 @@
+@import url('variables.css');
+
+body {
+    background-color: var(--hueso);
+    margin: 0;
+    padding-top: 5rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
+}
+
+body p {
+    font-family: var(--texto);
+    font-size: 1rem; /* Tamaño de fuente adaptable */
+}
+
+body h2 {
+    font-family: var(--titulos);
+    font-size: 2rem; /* Tamaño de fuente adaptable */
+}
+
+/* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+header {
+    background-color: var(--hueso); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; /* <- Distribuye h1 a la izquierda y nav a la derecha */
+    padding: 2rem 2rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de plantasia*/
+header h1 {
+    font-family: var(--especial); /* Fuente especial para el logo */
+    font-size: 1.5rem; /* Tamaño adaptable */
+    color: var(--verdeMatcha); /* Color verde matcha */
+    margin: 0;
+}
+/* Estilo de los enlaces */
+header nav ul {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Flexbox para alinear los enlaces horizontalmente */
+    gap: 2rem; /* Espaciado entre los enlaces */
+    margin: 0;
+    padding: 0 5rem;
+}
+
+
+header nav ul li a {
+    font-family: var(--especial); /* Fuente para los enlaces */
+    font-size: 1rem; /* Tamaño adaptable */
+    color: var(--negro); /* Color negro */
+    text-decoration: none; /* Elimina el subrayado */
+    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+
+header nav ul li a:hover {
+    color: var(--verdeMatcha); /* Cambia a verde matcha al pasar el cursor */
+}
+
+/* ''''''''''''''''''''''''''FIN DE ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
