@@ -15,4 +15,7 @@ vease el ejemplo de styleindex */
     --especial: 'Playfair Display', serif;
     --titulos: 'League Gothic', sans-serif;
     --texto: 'Montserrat', sans-serif;
+
+    /* Medidas */
+    --paddingGeneral: 1rem 6rem; /* Este es el espacio entre el texto del body y el borde de la pantalla */
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Plantasia</title>
+    <link rel="stylesheet" href="../variables.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <header>
+        <h1>Plantasia</h1>
+        <nav>
+            <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#SobreNosotros">Nosotros</a></li>
+            <li><a href="#">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="profile-form">
+            <h2>Tu perfil</h2>
+            <h3>Cuéntanos sobre ti</h3>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="pronombres">Pronombres</label>
+                    <input type="text" id="pronombres" name="pronombres" placeholder="Pronombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="biografia">Biografía</label>
+                    <textarea id="biografia" name="biografia" placeholder="Biografía" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div id="Plantasia">
+        Plantasia
+        </div>
+        <div id="Copyright">
+        Todos los derechos reservados<br>
+        © 2025 Plantasia
+        </div>
+    </footer>
+</body>
+</html>

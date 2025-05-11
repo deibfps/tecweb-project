@@ -1,0 +1,100 @@
+@import url('../variables.css');
+
+body {
+    margin: 0;
+    font-family: var(--texto);
+    background-color: var(--verdeClaro);
+    color: var(--negro);
+}
+
+header {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header .logo {
+    font-family: var(--especial);
+    font-size: 2rem;
+    color: var(--hueso);
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--verdeClaro);
+    padding: 1rem; /* Ajuste para pantallas pequeñas */
+}
+
+.login {
+    background-color: var(--hueso);
+    border-radius: 1rem; /* Ajuste proporcional */
+    padding: 2rem;
+    width: 90%; /* Usar porcentaje para adaptarse a pantallas pequeñas */
+    max-width: 25rem; /* Limitar el ancho máximo */
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login h2 {
+    font-family: var(--titulos);
+    font-size: 1.8rem; /* Tamaño relativo */
+    margin-bottom: 0.5rem;
+}
+
+.login p {
+    font-size: 1rem; /* Tamaño relativo */
+    margin-bottom: 1.5rem;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login label {
+    text-align: left;
+    font-size: 0.9rem; /* Tamaño relativo */
+    font-weight: bold;
+}
+
+.login input {
+    padding: 0.8rem;
+    border: 0.0625rem solid var(--verdeMatcha); /* Usar rem para bordes */
+    border-radius: 0.3125rem; /* Usar rem para bordes redondeados */
+    font-size: 1rem; /* Tamaño relativo */
+}
+
+.login .btn-login {
+    background-color: var(--verdeClaro);
+    color: var(--hueso);
+    font-size: 1rem; /* Tamaño relativo */
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.3125rem; /* Usar rem para bordes redondeados */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login .btn-login:hover {
+    background-color: var(--verdeMatcha);
+}
+
+.login .register-link {
+    margin-top: 1rem;
+    font-size: 0.9rem; /* Tamaño relativo */
+}
+
+.login .register-link a {
+    color: var(--verdeMatcha);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login .register-link a:hover {
+    text-decoration: underline;
+}
+

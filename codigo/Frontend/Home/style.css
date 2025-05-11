@@ -1,4 +1,4 @@
-@import url('variables.css');
+@import url('../variables.css');
 
 * {
     margin: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 body section{
-    padding: 1rem 6rem;
+    padding: var(--paddingGeneral);
 }
 
 body p {
@@ -33,40 +33,40 @@ body h2 {
 
 /* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
 body button {
-    padding: .8rem 2rem;
+    padding: 0.8rem 2rem;
     border: none;
     border-radius: 1.8rem;
     font-weight: bold;
     cursor: pointer;
     color: var(--verdeMatcha);
-    transition: all 1000ms;
-    font-size: 1rem;
+    transition: all 0.3s ease; /* Reducir la duración para mejor experiencia */
+    font-size: 1rem; /* Tamaño relativo */
     position: relative;
     overflow: hidden;
     font-family: var(--texto);
     background-color: var(--hueso);
-    border: .1rem solid var(--verdeMatcha);
-    }
-    body button:hover {
-        color: var(--hueso);
-        transform: scale(1.1);
-        box-shadow: 4px 5px 17px -4px var(--verdeMatcha);
-    }
-    body button::before {
-        content: "";
-        position: absolute;
-        left: -1rem;
-        top: 0;
-        width: 0;
-        height: 100%;
-        background-color: var(--verdeMatcha);
-        transform: skewX(45deg);
-        z-index: -1;
-        transition: width 1000ms;
-    }
-    body button:hover::before {
-        width: 250%;
-    }
+    border: 0.1rem solid var(--verdeMatcha);
+}
+body button:hover {
+    color: var(--hueso);
+    transform: scale(1.1);
+    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
+}
+body button::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--verdeMatcha);
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
+}
+body button:hover::before {
+    width: 250%;
+}
 /* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
     
 
@@ -203,5 +203,4 @@ header nav ul li a:hover {
     padding: .5rem 0;
     letter-spacing: .4rem;
 }
-
-/* ''''''''''''''''''''''''''FIN '''''''''''''''''''''''''''''''''''''''''''''''''*/
+/* ''''''''''''''''''''''''''FIN KEEP IT GREEN'''''''''''''''''''''''''''''''''''''''''''''''''*/
