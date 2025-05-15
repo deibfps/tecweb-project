@@ -39,8 +39,10 @@ main {
 }
 
 .login h2 {
-    font-family: var(--titulos);
+    font-family: var(--notoSans);
+    font-weight: 500;
     font-size: 1.8rem; /* Tamaño relativo */
+    letter-spacing: 0.07em;
     margin-bottom: 0.5rem;
 }
 
