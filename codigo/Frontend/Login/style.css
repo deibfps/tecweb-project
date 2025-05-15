@@ -23,14 +23,14 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     background-color: var(--verdeClaro);
     padding: 1rem; /* Ajuste para pantallas pequeñas */
 }
 
 .login {
     background-color: var(--hueso);
-    border-radius: 1rem; /* Ajuste proporcional */
+    border-radius: 4.5rem; /* Ajuste proporcional */
     padding: 2rem;
     width: 90%; /* Usar porcentaje para adaptarse a pantallas pequeñas */
     max-width: 25rem; /* Limitar el ancho máximo */
@@ -64,7 +64,7 @@ main {
 .login input {
     padding: 0.8rem;
     border: 0.0625rem solid var(--verdeMatcha); /* Usar rem para bordes */
-    border-radius: 0.3125rem; /* Usar rem para bordes redondeados */
+    border-radius: .75rem; /* Usar rem para bordes redondeados */
     font-size: 1rem; /* Tamaño relativo */
 }
 

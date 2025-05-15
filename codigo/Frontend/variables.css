@@ -18,4 +18,6 @@ vease el ejemplo de styleindex */
 
     /* Medidas */
     --paddingGeneral: 1rem 6rem; /* Este es el espacio entre el texto del body y el borde de la pantalla */
+    --radiusGeneral: 4.5rem;
+    --radiusInput: .75rem;
 }
