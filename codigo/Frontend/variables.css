@@ -4,6 +4,8 @@ Este documento tiene como fin el poder agilizar el diseño, reutilizando variabl
 para evitar usar colores dispersos o fuentes incorrectas, para poder hacer uso de él,
 vease el ejemplo de styleindex */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     /* Colores principales : */
     --verdeMatcha: #628b35;
@@ -15,7 +17,10 @@ vease el ejemplo de styleindex */
     --especial: 'Playfair Display', serif;
     --titulos: 'League Gothic', sans-serif;
     --texto: 'Montserrat', sans-serif;
+    --notoSans: 'Noto Sans', sans-serif;
 
     /* Medidas */
     --paddingGeneral: 1rem 6rem; /* Este es el espacio entre el texto del body y el borde de la pantalla */
+    --radiusGeneral: 4.5rem;
+    --radiusInput: .75rem;
 }
