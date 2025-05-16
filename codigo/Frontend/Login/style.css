@@ -65,25 +65,39 @@ main {
 
 .login input {
     padding: 0.8rem;
-    border: 0.0625rem solid var(--verdeMatcha); /* Usar rem para bordes */
+    border: 0.0625rem solid var(--verdeApagado); /* Usar rem para bordes */
     border-radius: .75rem; /* Usar rem para bordes redondeados */
     font-size: 1rem; /* Tamaño relativo */
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+}
+
+.login input:hover {
+    outline: none;
+	border-color: #88b04b;
+	box-shadow: 0 0 0.75rem rgba(136, 176, 75, 0.8);
+}
+
+.login input:focus {
+    outline: none;
+    border-color: #88b04b;
+    box-shadow: 0 0 0.75rem rgba(136, 176, 75, 0.8);
 }
 
 .login .btn-login {
     background-color: var(--verdeClaro);
     color: var(--hueso);
     font-size: 1rem; /* Tamaño relativo */
-    padding: 0.8rem;
+    padding: 1rem;
     border: none;
-    border-radius: 0.3125rem; /* Usar rem para bordes redondeados */
+    border-radius: var(--radiusInput); /* Usar rem para bordes redondeados */
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .login .btn-login:hover {
     background-color: var(--verdeMatcha);
-    transition-duration: 0.3s;
 }
 
 .login .register-link {

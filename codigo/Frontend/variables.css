@@ -12,6 +12,8 @@ vease el ejemplo de styleindex */
     --hueso: #f6f5ef; /* Blanco */
     --negro: #000000;
     --verdeClaro: #aec892;
+    --verdeApagado: #8e9d8a;
+    --verdeGlow: #88b04b;
 
     /* Tipografía */
     --especial: 'Playfair Display', serif;
