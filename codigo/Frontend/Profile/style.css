@@ -189,12 +189,10 @@ body button:hover::before {
     width: 250%;
 }
 
-footer {
+footer{
     background-color: var(--verdeMatcha);
     color: var(--hueso);
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 2rem 6rem
 }
 
 footer #Plantasia {
