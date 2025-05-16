@@ -1,0 +1,130 @@
+@import url('../variables.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a,
+a:visited,
+a:active,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+body {
+    background-color: var(--hueso);
+    margin: 0;
+    padding-top: 8rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
+}
+
+body section{
+    padding: var(--paddingGeneral);
+}
+
+body p {
+    font-family: var(--texto);
+    font-size: 1rem; /* Tamaño de fuente adaptable */
+    line-height: 1.5rem;
+}
+
+body h2 {
+    font-family: var(--titulos);
+    font-size: 1.7rem; /* Tamaño de fuente adaptable */
+    font-weight: bold;
+}
+/* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+header {
+    background-color: var(--hueso); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; /* <- Distribuye h1 a la izquierda y nav a la derecha */
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+/* Estilo de plantasia*/
+header h1 {
+    font-family: var(--especial); /* Fuente especial para el logo */
+    font-size: 1.5rem; /* Tamaño adaptable */
+    color: var(--verdeMatcha); /* Color verde matcha */
+    margin: 0;
+    padding: 0 2rem;
+}
+/* Estilo de los enlaces */
+header nav ul {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Flexbox para alinear los enlaces horizontalmente */
+    gap: 3rem; /* Espaciado entre los enlaces */
+    margin: 0;
+    padding: 0 3rem;
+    
+}
+header nav ul li a {
+    font-family: var(--especial); /* Fuente para los enlaces */
+    font-size: 1rem; /* Tamaño adaptable */
+    color: var(--negro); /* Color negro */
+    text-decoration: none; /* Elimina el subrayado */
+    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+header nav ul li a:hover {
+    color: var(--verdeMatcha); /* Cambia a verde matcha al pasar el cursor */
+}
+/* ''''''''''''''''''''''''''FIN DE ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+/* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
+body button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--verdeMatcha);
+    transition: all 0.3s ease; /* Reducir la duración para mejor experiencia */
+    font-size: 1rem; /* Tamaño relativo */
+    position: relative;
+    overflow: hidden;
+    font-family: var(--texto);
+    background-color: var(--hueso);
+    border: 0.1rem solid var(--verdeMatcha);
+    margin: 3rem 0;
+}
+body button:hover {
+    color: var(--hueso);
+    transform: scale(1.1);
+    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
+}
+body button::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--verdeMatcha);
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
+}
+body button:hover::before {
+    width: 250%;
+}
+/* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+footer{
+    background-color: var(--verdeMatcha);
+    color: var(--hueso);
+    padding: 2rem 6rem
+
+}
+
+/* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/

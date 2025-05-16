@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+a,
+a:visited,
+a:active,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
 html, body {
     overflow-x: hidden;
 }
@@ -142,6 +150,7 @@ header nav ul li a:hover {
     justify-content: space-between; 
 }
 
+
 .TextoEco {
     width: 68%;
     padding-top: 3rem;
@@ -170,6 +179,7 @@ header nav ul li a:hover {
     align-items: center; 
     justify-content: space-between; 
     padding-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 .TextoEco2 {
     width: 68%;
@@ -186,6 +196,10 @@ header nav ul li a:hover {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+}
+
+#ImagenEco2 img{
+    margin-left: 5rem;
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS2 '''''''''''''''''''''''''''''''''''''''''''''''''*/
 
@@ -204,3 +218,196 @@ header nav ul li a:hover {
     letter-spacing: .4rem;
 }
 /* ''''''''''''''''''''''''''FIN KEEP IT GREEN'''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''MEXICO SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+.Mexico {
+        display: flex; 
+        align-items: center;
+        justify-content: space-between;
+}
+
+.Mexico img{
+    margin-right: -9rem;
+    border-radius: 2.7rem;
+}
+
+#Parte1{
+        width: 50%;
+}
+
+#Parte1 h2{
+        font-family: var(--especial);
+        font-weight: bolder;
+        padding: 3.2rem 0 1.5rem 0;
+        font-size: 2.3rem;
+        margin-top: 2rem;
+        
+}
+#Parte1 p{
+        padding-bottom: 2rem;
+}
+
+#Parte1 button{
+        background-color: var(--verdeMatcha);
+        color: var(--hueso);
+        padding: 0.8rem 2rem;
+        border-radius: 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease; /* Reducir la duración para mejor experiencia */
+        margin-bottom: 3rem;
+}
+
+#ImagenMexico {
+        width: 50%;
+        display: flex;
+        justify-content: right; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+}
+/* ''''''''''''''''''''''''''FIN DE MEXICO SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''GETTING GREEN SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+.GettingGreen {
+    background-color: var(--verdeMatcha);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: var(--hueso);
+}
+
+.GettingGreen h4{
+    font-family: var(--texto);
+    font-size: .9rem;
+    margin: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+.GettingGreen h2{
+    font-family: var(--especial);
+    font-weight: bolder;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    font-size: 2.6rem;
+}
+
+#TextoGettingGreen p{
+    margin-top: -1.4rem;
+    margin-bottom: 1rem;
+}
+
+
+/* CARDS */ 
+.acciones{
+        display: flex;
+        align-items: stretch;
+        justify-content: space-evenly; /* Espacio igual entre y alrededor de las cards */
+        width: 100%;
+        gap: 2rem; /* Espacio entre las cards */
+        flex-wrap: wrap;
+}
+    .card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17rem;
+    border-radius: 1.5rem;
+    line-height: 1.6;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    }
+
+    .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.7rem;
+    border-radius: 1.5rem;
+    color: var(--verdeMatcha);
+    overflow: hidden;
+    background: var(--hueso);
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .content::before {
+    position: absolute;
+    content: "";
+    top: -4%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    transform: translate(-50%);
+    background: #9dc078;
+    z-index: -1;
+    transform-origin: bottom;
+    border-radius: inherit;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .content::after {
+    position: absolute;
+    content: "";
+    top: -8%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%);
+    background: #dbf0c4;
+    z-index: -2;
+    transform-origin: bottom;
+    border-radius: inherit;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .content .para {
+    z-index: 1;
+    opacity: 1;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: .8rem;
+    margin-top: -1rem;
+    font-weight: bold;
+    line-height: 1rem;
+    }
+    .content h3{
+        padding-top: 3rem;
+    }
+    .card:hover {
+    transform: translate(0px, -16px);
+    }
+    .card:hover .content::before {
+    rotate: -8deg;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    }
+    .card:hover .content::after {
+    rotate: 8deg;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    }
+
+    /* ''''''''''''''''''''''''''FIN DE GETTING GREEN SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''ABOUT US SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+.SobreNosotros{
+    margin: 3.3rem 0;
+}
+
+.SobreNosotros h2{
+    font-family: var(--especial);
+    font-weight: bolder;
+    padding-bottom: 1.5rem;
+    font-size: 2.3rem;
+}
+
+/* ''''''''''''''''''''''''''FIN ABOUT US SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+footer{
+    background-color: var(--verdeMatcha);
+    color: var(--hueso);
+    padding: 2rem 6rem
+
+}
+
+/* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/

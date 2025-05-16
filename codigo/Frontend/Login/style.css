@@ -83,6 +83,7 @@ main {
 
 .login .btn-login:hover {
     background-color: var(--verdeMatcha);
+    transition-duration: 0.3s;
 }
 
 .login .register-link {
