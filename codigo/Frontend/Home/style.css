@@ -148,11 +148,6 @@ header nav ul li a:hover {
     display: flex; /* <- Esto lo necesitábamos sí o sí */
     align-items: center; 
     justify-content: space-between; 
-    margin-bottom: 3rem;
-}
-
-#EcoFacts2 img{
-    border-radius: 50%;
 }
 
 
@@ -184,7 +179,7 @@ header nav ul li a:hover {
     align-items: center; 
     justify-content: space-between; 
     padding-bottom: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 .TextoEco2 {
     width: 68%;
@@ -201,6 +196,10 @@ header nav ul li a:hover {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+}
+
+#ImagenEco2 img{
+    margin-left: 5rem;
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS2 '''''''''''''''''''''''''''''''''''''''''''''''''*/
 
