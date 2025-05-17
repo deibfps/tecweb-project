@@ -170,7 +170,6 @@ select {
     font-family: var(--texto);
     width: 100%;
     min-height: 3rem;
-    color: #888888;
 }
 
 select:focus {
