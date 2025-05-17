@@ -1,94 +1,149 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>México y el Cuidado Ambiental - Plantasia</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>México y el Cuidado Ambiental - Plantasia</title>
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
-    <header>
-        <h1>Plantasia</h1>
-        <nav>
-            <ul>
-            <li><a href="../Home/index.html">Home</a></li>
-            <li><a href="../Home/index.html #SobreNosotros">Nosotros</a></li>
-            <li><a href="../Profile/index.html">Perfil</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="intro">
-            <h2>México y el cuidado ambiental</h2>
-            <p>
-                México enfrenta una dualidad ambiental: por un lado, posee una de las biodiversidades más 
-                ricas del mundo; por el otro, carga con una crisis ecológica derivada del crecimiento urbano 
-                desordenado, la sobreexplotación de recursos y una gestión ambiental fragmentada. 
-                En este contexto, la conciencia ambiental en México ya no es una opción, sino una responsabilidad 
-                compartida entre instituciones, empresas y ciudadanía. Las generaciones jóvenes están asumiendo un 
-                papel clave desde la innovación.
-            </p>
-            <figure>
-                <img src="placeholder.jpg" alt="Imagen representativa del medio ambiente">
-            </figure>
-        </section>
+  <header>
+    <h1>Plantasia</h1>
+    <nav>
+      <ul>
+        <li><a href="../Home/index.html">Home</a></li>
+        <li><a href="../Home/index.html#SobreNosotros">Nosotros</a></li>
+        <li><a href="../Profile/index.html">Perfil</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <section class="transition">
-            <h3>Transición hacia una cultura de sostenibilidad</h3>
-            <p>
-                En los últimos años, ha crecido el interés por hábitos sostenibles como el consumo responsable, 
-                la movilidad ecológica y la reducción de residuos. Esta transición no se basa solo en el reciclaje 
-                o en modas pasajeras, sino en rediseñar la relación entre las personas y su entorno. Una tendencia 
-                que salve al mundo.
-            </p>
-            <p>
-                Desde startups que crean empaques biodegradables hasta desarrollos inmobiliarios con enfoque 
-                regenerativo, hay un giro claro hacia la sostenibilidad como un eje estratégico, no decorativo. 
-                El cambio real ocurre cuando la sustentabilidad deja de ser una tendencia para convertirse en 
-                infraestructura cultural.
-            </p>
-        </section>
+  <main>
+    <section class="intro">
+      <h2>México y el cuidado ambiental</h2>
+      <p>
+        México enfrenta una dualidad ambiental: por un lado, posee una de las biodiversidades más 
+        ricas del mundo; por el otro, carga con una crisis ecológica derivada del crecimiento urbano 
+        desordenado, la sobreexplotación de recursos y una gestión ambiental fragmentada. 
+        En este contexto, la conciencia ambiental en México ya no es una opción, sino una responsabilidad 
+        compartida entre instituciones, empresas y ciudadanía. Las generaciones jóvenes están asumiendo un 
+        papel clave desde la innovación.
+      </p>
+      <div class="imagen-eco">
+        <img src="https://img.freepik.com/vector-premium/bosquejo-tinta-arbol-pino-ilustracion-vector-dibujado-mano-dibujo-estilo-vintage_63088348.jpg" alt="Árbol estilo vectorial" />
+      </div>
+    </section>
 
-        <section class="stats">
-            <h3>Estados con más miembros Plantasísticos</h3>
-            <div class="chart">
-                <p>¿De qué estado eres?</p>
-                <button>Opciones</button>
-            </div>
-        </section>
+    <section class="transition">
+      <h3>Transición hacia una cultura de sostenibilidad</h3>
+      <div class="text-columns">
+        <p>
+          En los últimos años, ha crecido el interés por hábitos sostenibles como el consumo responsable, 
+          la movilidad ecológica y la reducción de residuos. Esta transición no se basa solo en el reciclaje 
+          o en modas pasajeras, sino en rediseñar la relación entre las personas y su entorno. Una tendencia 
+          que salve al mundo.
+        </p>
+        <p>
+          Desde startups que crean empaques biodegradables hasta desarrollos inmobiliarios con enfoque 
+          regenerativo, hay un giro claro hacia la sostenibilidad como un eje estratégico, no decorativo. 
+          El cambio real ocurre cuando la sustentabilidad deja de ser una tendencia para convertirse en 
+          infraestructura cultural.
+        </p>
+      </div>
+    </section>
 
-        <section class="biodiversity">
-            <h3>Biodiversidad amenazada</h3>
-            <p>
-                México alberga aproximadamente el 10% de la biodiversidad mundial, con especies únicas que van 
-                desde el ajolote hasta el jaguar. Sin embargo, esta riqueza está bajo presión constante por la 
-                deforestación, la contaminación de cuerpos de agua y la expansión agrícola y urbana no planificada.
-                Cada año se pierden miles de hectáreas de ecosistemas estratégicos como selvas y manglares, 
-                afectando no solo la fauna y flora, sino también los sistemas de vida de comunidades enteras. 
-                La conservación ya no puede depender únicamente de políticas públicas; requiere nuevas narrativas 
-                y soluciones tecnológicas aplicadas desde lo local.
-            </p>
-        </section>
+<section class="stats">
+  <h3>Estados con más miembros Plantasísticos</h3>
+  <div class="chart">
+    <label for="estado">¿De qué estado eres?</label><br><br>
+    <select id="estado" name="estado">
+      <option value="" disabled selected>Selecciona tu estado</option>
+      <option>Baja California</option>
+          <option>Baja California Sur</option>
+          <option>Campeche</option>
+          <option>CDMX</option>
+          <option>Chiapas</option>
+          <option>Chihuahua</option>
+          <option>Coahuila</option>
+          <option>Colima</option>
+          <option>Durango</option>
+          <option>Estado de México</option>
+          <option>Guanajuato</option>
+          <option>Guerrero</option>
+          <option>Hidalgo</option>
+          <option>Jalisco</option>
+          <option>Michoacán</option>
+          <option>Morelos</option>
+          <option>Nayarit</option>
+          <option>Nuevo León</option>
+          <option>Oaxaca</option>
+          <option>Puebla</option>
+          <option>Querétaro</option>
+          <option>Quintana Roo</option>
+          <option>San Luis Potosí</option>
+          <option>Sinaloa</option>
+          <option>Sonora</option>
+          <option>Tabasco</option>
+          <option>Tamaulipas</option>
+          <option>Tlaxcala</option>
+          <option>Veracruz</option>
+          <option>Yucatán</option>
+          <option>Zacatecas</option>
+    </select>
+  </div>
+</section>
 
-        <section class="quiz">
-            <h3>Quiz</h3>
-            <div class="quiz-container">
-                <div class="question">Pregunta o sección</div>
-                <div class="question">Pregunta o sección</div>
-                <div class="question">Pregunta o sección</div>
-                <div class="question">Pregunta o sección</div>
-            </div>
-        </section>
-    </main>
+    <section class="biodiversity">
+      <h3>Biodiversidad amenazada</h3>
+      <p>
+        México alberga aproximadamente el 10% de la biodiversidad mundial, con especies únicas que van 
+        desde el ajolote hasta el jaguar. Sin embargo, esta riqueza está bajo presión constante por la 
+        deforestación, la contaminación de cuerpos de agua y la expansión agrícola y urbana no planificada.
+        Cada año se pierden miles de hectáreas de ecosistemas estratégicos como selvas y manglares, 
+        afectando no solo la fauna y flora, sino también los sistemas de vida de comunidades enteras. 
+        La conservación ya no puede depender únicamente de políticas públicas; requiere nuevas narrativas 
+        y soluciones tecnológicas aplicadas desde lo local.
+      </p>
+    </section>
 
-    <footer>
-        <div id="Plantasia">
-        Plantasia
-        </div>
-        <div id="Copyright">
-        Todos los derechos reservados<br>
-        © 2025 Plantasia
-        </div>
-    </footer>
+    <section class="quiz">
+  <h3>Quiz</h3>
+  <div class="quiz-container">
+    <div class="question">
+      <p>¿Reciclas frecuentemente?</p>
+      <label><input type="radio" name="q1"> Sí</label>
+      <label><input type="radio" name="q1"> No</label>
+    </div>
+    <div class="question">
+      <p>¿Utilizas transporte sustentable?</p>
+      <label><input type="radio" name="q2"> Sí</label>
+      <label><input type="radio" name="q2"> No</label>
+    </div>
+    <div class="question">
+      <p>¿Compras productos locales?</p>
+      <label><input type="radio" name="q3"> Sí</label>
+      <label><input type="radio" name="q3"> No</label>
+    </div>
+    <div class="question">
+      <p>¿Evitas el plástico?</p>
+      <label><input type="radio" name="q4"> Sí</label>
+      <label><input type="radio" name="q4"> No</label>
+    </div>
+  </div>
+  <div class="quiz-submit">
+    <button type="button">Enviar</button>
+  </div>
+</section>
+
+  </main>
+
+ <footer>
+  <div class="footer-content">
+    <p>Plantasia</p>
+    <p>Todos los derechos reservados</p>
+    <p>© 2025 Plantasia</p>
+  </div>
+</footer>
+
 </body>
 </html>

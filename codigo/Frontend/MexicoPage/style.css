@@ -1,14 +1,79 @@
+@import url('../variables.css');
+
+/* RESET GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--hueso);
+  font-family: var(--texto);
+  color: var(--negro);
+  padding-top: 5rem;
+  line-height: 1.6;
+}
+
 main {
   max-width: 850px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
 }
 
+/* NAV */
+header {
+  background-color: var(--hueso);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+header h1 {
+  font-family: var(--especial);
+  font-size: 1.5rem;
+  color: var(--verdeMatcha);
+  margin: 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li a {
+  font-family: var(--especial);
+  font-size: 1rem;
+  color: var(--negro);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: var(--verdeMatcha);
+}
+
+/* INTRO */
 .intro h2 {
   font-family: var(--especial);
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.intro p {
+  text-align: justify;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
 }
 
 .imagen-eco {
@@ -22,6 +87,14 @@ main {
   height: auto;
 }
 
+/* TRANSICIÓN */
+.transition h3 {
+  font-family: var(--especial);
+  font-size: 2rem;
+  text-align: center;
+  margin: 2.5rem 0 1.5rem;
+}
+
 .text-columns {
   display: flex;
   flex-wrap: wrap;
@@ -32,48 +105,135 @@ main {
 
 .text-columns p {
   flex: 1 1 45%;
+  font-size: 1rem;
 }
 
-.stats .chart {
+/* ESTADOS */
+.stats {
   background-color: var(--verdeMatcha);
+  padding: 2rem 3rem;
+  margin: 3rem 0;
+  text-align: left;
+  border-radius: 0; /* sin bordes redondos */
   color: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  margin-top: 1rem;
-  display: inline-block;
-  font-family: var(--notoSans);
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-family: var(--especial);
 }
 
-.stats .chart button {
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
+.stats h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chart label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart select {
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
   border: none;
-  border-radius: var(--radiusInput);
+  color: var(--verdeMatcha);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* BIODIVERSIDAD */
+.biodiversity h3 {
+  font-family: var(--especial);
+  font-size: 2rem;
+  margin: 3rem 0 1rem;
+  text-align: center;
+}
+
+.biodiversity p {
+  text-align: justify;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* QUIZ */
+.quiz {
+  background-color: #c3dea3;
+  padding: 2rem 1.5rem 3rem;
+  margin-top: 3rem;
+  color: white;
+  text-align: center;
+  font-family: var(--texto);
+  font-weight: normal;
+}
+
+.quiz h3 {
+  font-family: var(--especial);
+  font-size: 2.2rem;
+  margin-bottom: 1.8rem;
+  color: white;
+}
+
+.quiz-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 2rem 3rem;
+  justify-content: center;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.question {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: normal;
+  color: white;
+}
+
+.question p {
+  margin-bottom: 0.5rem;
+}
+
+.question label {
+  margin-right: 1rem;
+  font-weight: normal;
+  color: white;
+}
+
+.quiz-submit {
+  margin-top: 2.5rem;
+}
+
+.quiz-submit button {
   background-color: white;
   color: var(--verdeMatcha);
+  border: none;
+  padding: 0.75rem 2.5rem;
   font-weight: bold;
+  font-size: 1rem;
+  border-radius: 2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.stats .chart button:hover {
+.quiz-submit button:hover {
   background-color: var(--verdeClaro);
 }
 
+/* FOOTER */
+
 footer {
-  background-color: var(--verdeApagado);
-  color: white;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  font-size: 0.9rem;
-  margin-top: 3rem;
+  background-color: var(--verdeMatcha);
+  color: var(--hueso);
+  padding: 2rem 6rem;
+  font-family: var(--texto);
 }
 
-footer #Plantasia {
-  font-family: var(--especial);
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
+
 
