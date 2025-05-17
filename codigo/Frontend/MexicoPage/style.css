@@ -1,111 +1,79 @@
-@import url('../variables.css');
-
-body {
-    margin: 0;
-    font-family: var(--texto);
-    background-color: var(--hueso);
-    color: var(--negro);
-    line-height: 1.6;
-    padding-top: 4rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
-}
-
-body section {
-    padding: var(--paddingGeneral);
-}
-
-/* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
-header {
-    background-color: var(--hueso); 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-family: var(--especial);
-    font-size: 1.5rem;
-    color: var(--verdeMatcha);
-    margin: 0;
-    padding: 0 2rem;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 3rem;
-    margin: 0;
-    padding: 0 3rem;
-}
-
-header nav ul li a {
-    font-family: var(--especial);
-    font-size: 1rem;
-    color: var(--negro);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    color: var(--verdeMatcha);
-}
-
-/* ''''''''''''''''''''''''''FIN DE ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
-
 main {
-    padding: 2rem 1rem;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.intro, .transition, .stats, .biodiversity, .quiz {
-    margin-bottom: 2rem;
-    text-align: center;
+.intro h2 {
+  font-family: var(--especial);
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.intro h2, .transition h3, .stats h3, .biodiversity h3, .quiz h3 {
-    font-family: var(--titulos);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+.imagen-eco {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
-.intro p, .transition p, .biodiversity p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+.imagen-eco img {
+  width: 130px;
+  height: auto;
 }
 
-.intro figure img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 0.5rem;
-    margin: 1rem auto;
+.text-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  text-align: justify;
+}
+
+.text-columns p {
+  flex: 1 1 45%;
 }
 
 .stats .chart {
-    background-color: var(--verdeMatcha);
-    color: var(--hueso);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: inline-block;
-    font-size: 1rem;
+  background-color: var(--verdeMatcha);
+  color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  display: inline-block;
+  font-family: var(--notoSans);
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.quiz-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+.stats .chart button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: var(--radiusInput);
+  background-color: white;
+  color: var(--verdeMatcha);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.quiz-container .question {
-    background-color: var(--verdeClaro);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    text-align: center;
+.stats .chart button:hover {
+  background-color: var(--verdeClaro);
+}
+
+footer {
+  background-color: var(--verdeApagado);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+footer #Plantasia {
+  font-family: var(--especial);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
 }
 
