@@ -136,6 +136,21 @@ textarea {
     resize: none;
 }
 
+.label-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--negro);
+  background-color: var(--hueso );
+}
+
+.label-icon i {
+  font-size: 1rem;
+  color: var(--verdeMatcha);
+}
+
 input, textarea {
     min-height: 3rem;
 }
@@ -146,6 +161,24 @@ textarea:focus {
     border: 2px solid var(--verdeMatcha);
     box-shadow: 0 0 5px rgba(98, 139, 53, 0.3);
 }
+
+select {
+    padding: 0.8rem;
+    border: 0.0625rem solid var(--verdeClaro);
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: var(--texto);
+    width: 100%;
+    min-height: 3rem;
+    color: #888888;
+}
+
+select:focus {
+    outline: none;
+    border: 2px solid var(--verdeMatcha);
+    box-shadow: 0 0 5px rgba(98, 139, 53, 0.3);
+}
+
 
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE FORMULARIO'''''''''''''''''''''''''''''''''''''''''''''''''*/
 
