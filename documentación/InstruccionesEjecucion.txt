@@ -44,6 +44,16 @@ CREATE TABLE RESPUESTAS_QUIZ (
     FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario) ON DELETE CASCADE
 );
 
+--Tabla de el blog
+CREATE TABLE BLOG (
+    id_blog INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    comentario VARCHAR(300) NOT NULL,
+    fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario) ON DELETE CASCADE
+);
+
+
 3. Echar a andar el servidor de php (http://localhost:8000) en terminal
 Para mas informacion, consulta con alguna IA 
 

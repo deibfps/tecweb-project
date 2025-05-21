@@ -341,4 +341,59 @@ $app->get('/api/estado/{id_usuario}', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+// Obtener todos los comentarios del blog (más recientes primero)
+$app->get('/api/blog', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $sql = "SELECT b.comentario, b.fecha_publicacion, 
+                   IFNULL(p.nombre, u.correo) AS nombre, 
+                   p.apellido, 
+                   u.correo
+            FROM blog b
+            JOIN usuario u ON b.id_usuario = u.id_usuario
+            LEFT JOIN perfil_usuario p ON u.id_usuario = p.id_usuario
+            ORDER BY b.fecha_publicacion DESC";
+    $result = $mysqli->query($sql);
+
+    if ($result === false) {
+        $error = $mysqli->error;
+        $mysqli->close();
+        $response->getBody()->write(json_encode(['success' => false, 'error' => $error]));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    $comentarios = [];
+    while ($row = $result->fetch_assoc()) {
+        $comentarios[] = $row;
+    }
+    $mysqli->close();
+    $response->getBody()->write(json_encode($comentarios));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Agregar un comentario al blog
+$app->post('/api/blog', function ($request, $response, $args) {
+    $data = $request->getParsedBody();
+    $id_usuario = $data['id_usuario'];
+    $comentario = $data['comentario'];
+
+    if (!$comentario || !$id_usuario) {
+        $response->getBody()->write(json_encode(['success' => false, 'message' => 'Faltan datos']));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    $mysqli = getMySQLi();
+    $stmt = $mysqli->prepare("INSERT INTO blog (id_usuario, comentario) VALUES (?, ?)");
+    $stmt->bind_param("is", $id_usuario, $comentario);
+    $success = $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
+
+    if ($success) {
+        $response->getBody()->write(json_encode(['success' => true]));
+    } else {
+        $response->getBody()->write(json_encode(['success' => false, 'message' => 'Error al guardar comentario']));
+    }
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->run();

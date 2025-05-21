@@ -128,3 +128,88 @@ footer{
 }
 
 /* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+#blog {
+    background: #c3dba0;
+    padding: 0;
+    margin: 2em auto;
+    border-radius: 0 0 20px 20px;
+    max-width: 600px;
+}
+
+#blogForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c3dba0;
+    padding: 1em 0.5em;
+    border-radius: 0 0 20px 20px;
+    gap: 1em;
+}
+
+#comentario {
+    flex: 1;
+    border-radius: 2em;
+    border: none;
+    padding: 0.7em 1.2em;
+    font-size: 1em;
+    background: #f8f8f0;
+    outline: none;
+    resize: none;
+    min-height: 2.5em;
+    max-width: 70%;
+}
+
+#blogForm button[type="submit"] {
+    background: #6b9e3f;
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+    padding: 0.7em 2em;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#blogForm button[type="submit"]:hover {
+    background: #4e7c2c;
+}
+
+#blogComentarios {
+    background: #f8f8f0;
+    padding: 1.5em 1em 1em 1em;
+    border-radius: 0 0 20px 20px;
+    min-height: 120px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.comentario-blog {
+    margin-bottom: 1.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.comentario-blog strong {
+    display: block;
+    font-size: 1.1em;
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin-bottom: 0.2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.comentario-blog .fecha {
+    color: #888;
+    font-size: 0.85em;
+    margin-left: 0.5em;
+}
+
+.comentario-blog p {
+    margin: 0.2em 0 0 0;
+    font-size: 1em;
+    color: #222;
+    word-break: break-word;
+}

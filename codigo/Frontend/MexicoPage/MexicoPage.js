@@ -65,7 +65,7 @@ function calcularResultado(respuestas) {
     if (totalSi >= 6) {
         return "Líder de la Ecoaldea: Podrías dirigir comunidades sostenibles sin Wi-Fi.";
     } else if (totalSi > 4) {
-        return "Sobreviviente con estilo: Te adaptarías bien, con flow ecológico.";
+        return "Sobreviviente con estilo: Te adaptarías bien, puedes seguir aprendiendo.";
     } else {
         return "Climáticamente KO: Necesitas entrenar... o derretirte con el resto.";
     }

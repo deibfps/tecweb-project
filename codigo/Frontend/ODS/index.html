@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css"> <!-- Vincula el archivo CSS -->
 </head>
 <body>
-<script src="ODS.js"></script>
 <!--Barra de Navegación -->
 <header>
     <h1>Plantasia</h1>
@@ -20,9 +19,20 @@
 </header>
 
 <section>
-    <h2>Aqui estara el dashboard</h2>
-    <p>Este es el lugar donde se mostrará el contenido del dashboard en el futuro ( ͡° ͜ʖ ͡°)</p>
-    <button><a href="../Home/index.html">Regresar al inicio</a></button>
+    <h2>ODS 13: Acción por el clima</h2>
+    <p>El ODS 13, titulado "Acción por el clima", es uno de los 17 Objetivos de Desarrollo Sostenible (ODS) establecidos por la ONU dentro de la Agenda 2030. Su meta principal es tomar medidas urgentes para combatir el cambio climático y sus efectos, reconociendo que la crisis climática es uno de los mayores desafíos de nuestro tiempo.
+        Este objetivo promueve la reducción de emisiones de gases de efecto invernadero, la transición a energías limpias, la protección de ecosistemas y el fortalecimiento de la resiliencia de comunidades vulnerables frente a fenómenos como huracanes, sequías o incendios forestales. También enfatiza la importancia de que los países integren políticas climáticas en sus planes nacionales y colaboren a nivel global.
+        Más allá de lo ambiental, el ODS 13 es una llamada de emergencia: exige responsabilidad intergeneracional, innovación tecnológica y voluntad política. En resumen, no se trata solo de “cuidar el planeta”, sino de asegurar un futuro habitable para todos.</p>
+</section>
+
+<section id="blog">
+    <h3>¿Qué piensas del ODS 13?</h3>
+    <form id="blogForm">
+        <textarea id="comentario" maxlength="300" placeholder="Escribe tu comentario (máx. 300 caracteres)" required></textarea>
+        <br>
+        <button type="submit">Enviar comentario</button>
+    </form>
+    <div id="blogComentarios"></div>
 </section>
 
 <footer>
@@ -35,5 +45,6 @@
     </div>
 </footer>
 
+<script src="ODS.js"></script>
 </body>
 </html>
