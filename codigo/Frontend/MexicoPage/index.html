@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
+<script>
+if (!localStorage.getItem('usuarioLogueado')) {
+    alert("Inicia sesión para acceder a contenido exclusivo");
+    window.location.href = '../Login/index.html';
+}
+</script>
   <header>
     <h1>Plantasia</h1>
     <nav>
@@ -144,6 +150,13 @@
     <p>© 2025 Plantasia</p>
   </div>
 </footer>
+
+<script>
+// Si el usuario NO ha iniciado sesión, redirige al login
+if (!localStorage.getItem('usuarioLogueado')) {
+    window.location.href = '../Login/index.html';
+}
+</script>
 
 </body>
 </html>

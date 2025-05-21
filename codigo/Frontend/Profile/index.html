@@ -80,5 +80,18 @@
         © 2025 Plantasia
         </div>
     </footer>
+    <button onclick="logout()">Cerrar sesión</button>
+    <script>
+// Si el usuario NO ha iniciado sesión, redirige al login
+if (!localStorage.getItem('usuarioLogueado')) {
+    alert("Inicia sesión para acceder a contenido exclusivo");
+    window.location.href = '../Login/index.html';
+}
+
+function logout() {
+    localStorage.removeItem('usuarioLogueado');
+    window.location.href = '../Login/index.html';
+}
+</script>
 </body>
 </html>

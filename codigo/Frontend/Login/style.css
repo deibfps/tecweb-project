@@ -11,6 +11,14 @@ header {
     padding: 1rem 0;
 }
 
+.textoabajo {
+        font-family: var(--especial);
+        color: var(--hueso);
+        font-size: 1rem;
+        text-align: center;
+        margin-top: -3rem;
+}
+
 header .logo {
     font-family: var(--especial);
     font-size: 2rem;

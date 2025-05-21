@@ -1,40 +1,44 @@
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Acción por el clima - Dashboard</title>
-        <link rel="stylesheet" href="style.css"> <!-- Vincula el archivo CSS -->
-    </head>
-    <body>
-    <!--Barra de Navegación -->
-    <header>
-        <h1>Plantasia</h1>
-        <nav>
-            <ul>
-                <li><a href="../Home/index.html">Home</a></li>
-                <li><a href="#SobreNosotros">Nosotros</a></li>
-                <li><a href="../Profile/index.html">Perfil</a></li>
-                </ul>
-        </nav>
-    </header>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acción por el clima - Dashboard</title>
+    <link rel="stylesheet" href="style.css"> <!-- Vincula el archivo CSS -->
+</head>
+<body>
+<script>
+if (!localStorage.getItem('usuarioLogueado')) {
+    alert("Inicia sesión para acceder a contenido exclusivo");
+    window.location.href = '../Login/index.html';
+}
+</script>
+<!--Barra de Navegación -->
+<header>
+    <h1>Plantasia</h1>
+    <nav>
+        <ul>
+            <li><a href="../Home/index.html">Home</a></li>
+            <li><a href="#SobreNosotros">Nosotros</a></li>
+            <li><a href="../Profile/index.html">Perfil</a></li>
+        </ul>
+    </nav>
+</header>
 
-            <section>
-            <h2>Aqui estara el dashboard</h2>
-        <p>Este es el lugar donde se mostrará el contenido del dashboard en el futuro ( ͡° ͜ʖ ͡°)</p>
-                <button><a href="../Home/index.html">Regresar al inicio</a></button>
-        </section>
+<section>
+    <h2>Aqui estara el dashboard</h2>
+    <p>Este es el lugar donde se mostrará el contenido del dashboard en el futuro ( ͡° ͜ʖ ͡°)</p>
+    <button><a href="../Home/index.html">Regresar al inicio</a></button>
+</section>
 
-
-
-
-        <footer>
-        <div id="Plantasia">
+<footer>
+    <div id="Plantasia">
         Plantasia
-        </div>
-        <div id="Copyright">
+    </div>
+    <div id="Copyright">
         Todos los derechos reservados<br>
         © 2025 Plantasia
-        </div>
-        </footer>
-    </body>
-    </html>
+    </div>
+</footer>
+
+</body>
+</html>
