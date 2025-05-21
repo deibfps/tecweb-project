@@ -22,25 +22,28 @@ document.getElementById('createAccountForm').addEventListener('submit', function
         return;
     }
 
-    fetch('http://localhost:8080/api/signup', {
+    $.ajax({
+        url: 'http://localhost:8080/api/signup',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        contentType: 'application/json',
+        data: JSON.stringify({
             email,
             password,
             rol: accountType
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            alert('Cuenta creada exitosamente');
-            window.location.href = '../Login/index.html';
-        } else {
-            alert(data.message || 'Error al crear la cuenta');
+        }),
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                alert('Cuenta creada exitosamente');
+                window.location.href = '../Login/index.html';
+            } else {
+                alert(data.message || 'Error al crear la cuenta');
+            }
+        },
+        error: function() {
+            alert('Error de conexión con el servidor');
         }
-    })
-    .catch(() => alert('Error de conexión con el servidor'));
+    });
 });
 
 document.getElementById('togglePassword').addEventListener('click', function () {

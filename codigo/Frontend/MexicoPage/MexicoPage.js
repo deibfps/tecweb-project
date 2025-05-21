@@ -21,38 +21,36 @@ function bloquearEstado(nombre_estado) {
 }
 
 function cargarGraficaEstados() {
-    fetch('http://localhost:8080/api/estados/top')
-        .then(res => res.json())
-        .then(data => {
-            const labels = data.map(e => e.nombre_estado);
-            const values = data.map(e => parseInt(e.total));
+    $.get('http://localhost:8080/api/estados/top', function(data) {
+        const labels = data.map(e => e.nombre_estado);
+        const values = data.map(e => parseInt(e.total));
 
-            if (estadosChart) {
-                estadosChart.data.labels = labels;
-                estadosChart.data.datasets[0].data = values;
-                estadosChart.update();
-            } else {
-                const ctx = document.getElementById('estadosChart').getContext('2d');
-                estadosChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            data: values,
-                            backgroundColor: [
-                                '#4CAF50', '#FFC107', '#2196F3', '#FF5722', '#9C27B0'
-                            ]
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: { position: 'bottom' }
-                        }
+        if (estadosChart) {
+            estadosChart.data.labels = labels;
+            estadosChart.data.datasets[0].data = values;
+            estadosChart.update();
+        } else {
+            const ctx = document.getElementById('estadosChart').getContext('2d');
+            estadosChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: [
+                            '#4CAF50', '#FFC107', '#2196F3', '#FF5722', '#9C27B0'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
                     }
-                });
-            }
-        });
+                }
+            });
+        }
+    }, 'json');
 }
 
 function mostrarResultadoQuiz(resultado) {
@@ -76,13 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Estado: bloquear si ya contestó
     if (id_usuario) {
-        fetch(`http://localhost:8080/api/estado/${id_usuario}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.exists) {
-                    bloquearEstado(data.nombre_estado);
-                }
-            });
+        $.get(`http://localhost:8080/api/estado/${id_usuario}`, function(data) {
+            if (data.exists) {
+                bloquearEstado(data.nombre_estado);
+            }
+        }, 'json');
     }
 
     // Estado: enviar y actualizar gráfica
@@ -100,21 +96,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            fetch('http://localhost:8080/api/estado', {
+            $.ajax({
+                url: 'http://localhost:8080/api/estado',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_usuario, nombre_estado: estado })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    bloquearEstado(estado);
-                    setTimeout(cargarGraficaEstados, 500);
-                } else {
-                    alert(data.message || 'Error al guardar estado');
+                contentType: 'application/json',
+                data: JSON.stringify({ id_usuario, nombre_estado: estado }),
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        bloquearEstado(estado);
+                        setTimeout(cargarGraficaEstados, 500);
+                    } else {
+                        alert(data.message || 'Error al guardar estado');
+                    }
+                },
+                error: function() {
+                    alert('Error de conexión con el servidor');
                 }
-            })
-            .catch(() => alert('Error de conexión con el servidor'));
+            });
         });
     }
 
@@ -123,24 +122,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Quiz: mostrar resultado si ya contestó
     if (id_usuario) {
-        fetch(`http://localhost:8080/api/quiz/${id_usuario}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.exists) {
-                    const respuestas = [
-                        !!data.respuestas.pregunta_1,
-                        !!data.respuestas.pregunta_2,
-                        !!data.respuestas.pregunta_3,
-                        !!data.respuestas.pregunta_4,
-                        !!data.respuestas.pregunta_5,
-                        !!data.respuestas.pregunta_6,
-                        !!data.respuestas.pregunta_7,
-                        !!data.respuestas.pregunta_8
-                    ];
-                    const resultado = calcularResultado(respuestas);
-                    mostrarResultadoQuiz(resultado);
-                }
-            });
+        $.get(`http://localhost:8080/api/quiz/${id_usuario}`, function(data) {
+            if (data.exists) {
+                const respuestas = [
+                    !!data.respuestas.pregunta_1,
+                    !!data.respuestas.pregunta_2,
+                    !!data.respuestas.pregunta_3,
+                    !!data.respuestas.pregunta_4,
+                    !!data.respuestas.pregunta_5,
+                    !!data.respuestas.pregunta_6,
+                    !!data.respuestas.pregunta_7,
+                    !!data.respuestas.pregunta_8
+                ];
+                const resultado = calcularResultado(respuestas);
+                mostrarResultadoQuiz(resultado);
+            }
+        }, 'json');
     }
 
     // Quiz: enviar respuestas
@@ -166,21 +163,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 respuestas.push(radios[0].checked ? 1 : 0);
             }
 
-            fetch('http://localhost:8080/api/quiz', {
+            $.ajax({
+                url: 'http://localhost:8080/api/quiz',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_usuario, respuestas })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    const resultado = calcularResultado(respuestas.map(v => !!v));
-                    mostrarResultadoQuiz(resultado);
-                } else {
-                    alert(data.message || 'Error al guardar respuestas');
+                contentType: 'application/json',
+                data: JSON.stringify({ id_usuario, respuestas }),
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        const resultado = calcularResultado(respuestas.map(v => !!v));
+                        mostrarResultadoQuiz(resultado);
+                    } else {
+                        alert(data.message || 'Error al guardar respuestas');
+                    }
+                },
+                error: function() {
+                    alert('Error de conexión con el servidor');
                 }
-            })
-            .catch(() => alert('Error de conexión con el servidor'));
+            });
         });
     }
 });

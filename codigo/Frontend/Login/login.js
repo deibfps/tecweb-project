@@ -4,29 +4,31 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:8080/api/login', {
+    $.ajax({
+        url: 'http://localhost:8080/api/login',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            localStorage.setItem('usuarioLogueado', 'true');
-            localStorage.setItem('rol', data.rol);
-            localStorage.setItem('id_usuario', data.id_usuario);
-            window.location.href = '../Home/index.html';
-        } else {
-            alert(data.message);
+        contentType: 'application/json',
+        data: JSON.stringify({ email, password }),
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                localStorage.setItem('usuarioLogueado', 'true');
+                localStorage.setItem('rol', data.rol);
+                localStorage.setItem('id_usuario', data.id_usuario);
+                window.location.href = '../Home/index.html';
+            } else {
+                alert(data.message);
+            }
+        },
+        error: function() {
+            alert('Error de conexión con el servidor');
         }
-    })
-    .catch(() => alert('Error de conexión con el servidor'));
+    });
 });
 
-    document.getElementById('togglePassword').addEventListener('click', function () {
-        const passwordInput = document.getElementById('password');
-        const type = passwordInput.type === 'password' ? 'text' : 'password';
-        passwordInput.type = type;
-        // Cambia el ícono si quieres (opcional)
-        this.textContent = type === 'password' ? '👁️' : '🙈';
-    });
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    this.textContent = type === 'password' ? '👁️' : '🙈';
+});

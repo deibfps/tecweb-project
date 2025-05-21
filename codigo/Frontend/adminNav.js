@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
     if (localStorage.getItem('rol') === 'admin') {
         const navList = document.getElementById('nav-list');
         if (navList && !document.getElementById('admin-panel-link')) {
