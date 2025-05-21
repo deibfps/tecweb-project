@@ -137,6 +137,7 @@ $app->post('/api/signup', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+// Endpoint para obtener el perfil de un usuario (si existe se muestra, si no existe se muestra el form)
 $app->get('/api/perfil/{id_usuario}', function ($request, $response, $args) {
     $id_usuario = $args['id_usuario'];
     $mysqli = getMySQLi();
@@ -157,6 +158,8 @@ $app->get('/api/perfil/{id_usuario}', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+
+//Endpoint para editar el perfil de un usuario
 $app->post('/api/perfil', function ($request, $response, $args) {
     $data = $request->getParsedBody();
     $id_usuario = $data['id_usuario'];

@@ -1,0 +1,61 @@
+Para poder ejecutar el backend sin problemas:
+Primero que nada, abre xampp y activa apache y mysql
+1. Crear la base de datos 'tecweb' en phpmyadmin
+2. Crear las tablas correspondientes 
+-- Tabla USUARIO Para crear perfiles
+CREATE TABLE USUARIO (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    rol ENUM('usuario', 'admin') DEFAULT 'usuario',
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla PERFIL_USUARIO Para llenar informacion de perfil
+CREATE TABLE PERFIL_USUARIO (
+    id_usuario INT,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    pronombres VARCHAR(50),
+    fecha_nacimiento DATE,
+    biografia TEXT,
+    PRIMARY KEY (id_usuario),
+    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario) ON DELETE CASCADE
+);
+
+--Tabla estados -  Para encuesta plantasica
+CREATE TABLE ESTADOS (
+    id_usuario INT PRIMARY KEY,
+    nombre_estado VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario) ON DELETE CASCADE
+);
+
+--Tabla de quiz para almacenar las respuestas
+CREATE TABLE RESPUESTAS_QUIZ (
+    id_usuario INT PRIMARY KEY,
+    pregunta_1 BOOLEAN NOT NULL,
+    pregunta_2 BOOLEAN NOT NULL,
+    pregunta_3 BOOLEAN NOT NULL,
+    pregunta_4 BOOLEAN NOT NULL,
+    pregunta_5 BOOLEAN NOT NULL,
+    pregunta_6 BOOLEAN NOT NULL,
+    pregunta_7 BOOLEAN NOT NULL,
+    pregunta_8 BOOLEAN NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario) ON DELETE CASCADE
+);
+
+3. Echar a andar el servidor de php (http://localhost:8000) en terminal
+Para mas informacion, consulta con alguna IA 
+
+4. Accede a la direccion de localhost donde se encuentra tu repo
+por ejemplo: file:///C:/xampp/htdocs/tecweb-project/codigo/Frontend/Home/index.html
+
+5. Crea una cuenta
+
+6. Accede con los datos de la cuenta que acabas de crear
+
+Eso es todo, no deberia de haber problema, si las dudas 
+persisten o hay un eror desconocido, manden mensaje en el grupo.
+
+
+
