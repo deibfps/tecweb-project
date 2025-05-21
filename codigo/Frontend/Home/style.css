@@ -40,7 +40,7 @@ body h2 {
 }
 
 /* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
-body button {
+body button:not(.Btn) {
     padding: 0.8rem 2rem;
     border: none;
     border-radius: 1.8rem;
@@ -55,12 +55,12 @@ body button {
     background-color: var(--hueso);
     border: 0.1rem solid var(--verdeMatcha);
 }
-body button:hover {
+body button:not(.Btn):hover {
     color: var(--hueso);
     transform: scale(1.1);
     box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
 }
-body button::before {
+body button:not(.Btn)::before {
     content: "";
     position: absolute;
     left: -1rem;
@@ -72,7 +72,7 @@ body button::before {
     z-index: -1;
     transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
 }
-body button:hover::before {
+body button:not(.Btn):hover::before {
     width: 250%;
 }
 /* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
@@ -148,6 +148,8 @@ header nav ul li a:hover {
     display: flex; /* <- Esto lo necesitábamos sí o sí */
     align-items: center; 
     justify-content: space-between; 
+    margin-bottom: 5.5rem;
+    margin-top: 3rem;
 }
 
 
@@ -170,6 +172,12 @@ header nav ul li a:hover {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+        margin-right: 6rem;
+}
+#ImagenEco img{
+    margin-left: 5rem;
+    border-radius: 2.7rem;
+
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS1 '''''''''''''''''''''''''''''''''''''''''''''''''*/
 
@@ -179,7 +187,8 @@ header nav ul li a:hover {
     align-items: center; 
     justify-content: space-between; 
     padding-bottom: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5.5rem;
+    margin-top: 2.5rem;
 }
 .TextoEco2 {
     width: 68%;
@@ -196,10 +205,12 @@ header nav ul li a:hover {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+
 }
 
 #ImagenEco2 img{
     margin-left: 5rem;
+    border-radius: 2.7rem;
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE ECOFACTS2 '''''''''''''''''''''''''''''''''''''''''''''''''*/
 
@@ -390,7 +401,7 @@ header nav ul li a:hover {
 
 /* ''''''''''''''''''''''''''ABOUT US SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
 .SobreNosotros{
-    margin: 3.3rem 0;
+    margin: 6rem 0;
 }
 
 .SobreNosotros h2{
@@ -411,3 +422,59 @@ footer{
 }
 
 /* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+/* ''''''''''''''''''''''''''MUSICA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+    .Btn {
+    all: unset;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    /* overflow: hidden; */
+    border-radius: 7px;
+    cursor: pointer;
+    }
+    .BG {
+    all: unset;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: all 0.3s;
+    }
+
+.Musica{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem; 
+}
+.Musica h2{
+    font-family: var(--especial);
+    font-weight: bolder;
+    padding-bottom: 1.5rem;
+    font-size: 2.3rem;
+}
+#BotonesMusica{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: .3rem;
+}
+
+#vinilo{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+/* ''''''''''''''''''''''''''FIN DE MUSICA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
