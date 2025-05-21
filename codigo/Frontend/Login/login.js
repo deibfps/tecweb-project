@@ -22,3 +22,11 @@ document.querySelector('form').addEventListener('submit', function(e) {
     })
     .catch(() => alert('Error de conexión con el servidor'));
 });
+
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        // Cambia el ícono si quieres (opcional)
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+    });
