@@ -26,9 +26,15 @@ document.querySelector('form').addEventListener('submit', function(e) {
     });
 });
 
+// Mostrar/ocultar contraseña
 document.getElementById('togglePassword').addEventListener('click', function () {
     const passwordInput = document.getElementById('password');
-    const type = passwordInput.type === 'password' ? 'text' : 'password';
-    passwordInput.type = type;
-    this.textContent = type === 'password' ? '👁️' : '🙈';
+    const eyeOpen = document.getElementById('eyeOpen');
+    const eyeClosed = document.getElementById('eyeClosed');
+
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+
+    eyeOpen.style.display = isPassword ? 'none' : 'inline';
+    eyeClosed.style.display = isPassword ? 'inline' : 'none';
 });
