@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
@@ -344,10 +344,10 @@ $app->get('/api/estado/{id_usuario}', function ($request, $response, $args) {
 // Obtener todos los comentarios del blog (más recientes primero)
 $app->get('/api/blog', function ($request, $response, $args) {
     $mysqli = getMySQLi();
-    $sql = "SELECT b.comentario, b.fecha_publicacion, 
-                   IFNULL(p.nombre, u.correo) AS nombre, 
-                   p.apellido, 
-                   u.correo
+    $sql = "SELECT b.id_blog, b.comentario, b.fecha_publicacion, 
+                IFNULL(p.nombre, u.correo) AS nombre, 
+                p.apellido, 
+                u.correo
             FROM blog b
             JOIN usuario u ON b.id_usuario = u.id_usuario
             LEFT JOIN perfil_usuario p ON u.id_usuario = p.id_usuario
@@ -393,6 +393,129 @@ $app->post('/api/blog', function ($request, $response, $args) {
     } else {
         $response->getBody()->write(json_encode(['success' => false, 'message' => 'Error al guardar comentario']));
     }
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Obtener todos los usuarios
+$app->get('/api/usuarios', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("SELECT id_usuario, correo, rol FROM usuario");
+    $usuarios = [];
+    while ($row = $result->fetch_assoc()) {
+        $usuarios[] = $row;
+    }
+    $mysqli->close();
+    $response->getBody()->write(json_encode($usuarios));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Eliminar usuario por ID
+$app->delete('/api/usuarios/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $mysqli = getMySQLi();
+    $stmt = $mysqli->prepare("DELETE FROM usuario WHERE id_usuario = ?");
+    $stmt->bind_param("i", $id);
+    $success = $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['success' => $success]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Eliminar comentario del blog por ID
+$app->delete('/api/blog/{id_blog}', function ($request, $response, $args) {
+    $id_blog = $args['id_blog'];
+    $mysqli = getMySQLi();
+    $stmt = $mysqli->prepare("DELETE FROM blog WHERE id_blog = ?");
+    $stmt->bind_param("i", $id_blog);
+    $success = $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['success' => $success]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+///////ENDPOINTS DE DASHBOARD///////
+// Total de usuarios
+$app->get('/api/dashboard/usuarios', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("SELECT COUNT(*) as total FROM usuario");
+    $total = $result->fetch_assoc()['total'];
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['total' => $total]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Total de comentarios
+$app->get('/api/dashboard/comentarios', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("SELECT COUNT(*) as total FROM blog");
+    $total = $result->fetch_assoc()['total'];
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['total' => $total]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Usuarios por pronombres
+$app->get('/api/dashboard/pronombres', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("SELECT pronombres, COUNT(*) as total FROM perfil_usuario GROUP BY pronombres");
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['pronombres'] ?: 'Sin especificar';
+        $values[] = $row['total'];
+    }
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Usuarios vs Administradores
+$app->get('/api/dashboard/roles', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("SELECT rol, COUNT(*) as total FROM usuario GROUP BY rol");
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = ucfirst($row['rol']);
+        $values[] = $row['total'];
+    }
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Actividad del foro últimos 5 días
+$app->get('/api/dashboard/foro-actividad', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $result = $mysqli->query("
+        SELECT DATE(fecha_publicacion) as fecha, COUNT(*) as total
+        FROM blog
+        WHERE fecha_publicacion >= DATE_SUB(CURDATE(), INTERVAL 4 DAY)
+        GROUP BY fecha
+        ORDER BY fecha ASC
+    ");
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['fecha'];
+        $values[] = $row['total'];
+    }
+    // Asegura que estén los últimos 5 días aunque no haya actividad
+    $dias = [];
+    for ($i = 4; $i >= 0; $i--) {
+        $dias[] = date('Y-m-d', strtotime("-$i days"));
+    }
+    $finalLabels = [];
+    $finalValues = [];
+    foreach ($dias as $dia) {
+        $key = array_search($dia, $labels);
+        $finalLabels[] = $dia;
+        $finalValues[] = $key !== false ? $values[$key] : 0;
+    }
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $finalLabels, 'values' => $finalValues]));
     return $response->withHeader('Content-Type', 'application/json');
 });
 

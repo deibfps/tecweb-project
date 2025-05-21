@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css?v=2" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="MexicoPage.js"></script>
+  <script src="../adminNav.js"></script>
 </head>
 <body>
 <script>
@@ -18,9 +19,9 @@ if (!localStorage.getItem('usuarioLogueado')) {
   <header>
     <h1>Plantasia</h1>
     <nav>
-      <ul>
+      <ul id="nav-list">
         <li><a href="../Home/index.html">Home</a></li>
-        <li><a href="../Home/index.html#SobreNosotros">Nosotros</a></li>
+        <li><a href="#SobreNosotros">Nosotros</a></li>
         <li><a href="../Profile/index.html">Perfil</a></li>
       </ul>
     </nav>

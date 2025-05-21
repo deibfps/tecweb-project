@@ -9,23 +9,52 @@ function mostrarComentarios() {
         .then(data => {
             const contenedor = document.getElementById('blogComentarios');
             contenedor.innerHTML = '';
+            const esAdmin = localStorage.getItem('rol') === 'admin';
             if (data.length === 0) {
                 contenedor.innerHTML = '<p>No hay comentarios aún. ¡Sé el primero!</p>';
                 return;
             }
-            data.forEach(c => {
+            data.forEach((c, idx) => {
                 const nombre = c.nombre && c.apellido
                     ? `${c.nombre} ${c.apellido}`
                     : c.correo;
                 const fecha = new Date(c.fecha_publicacion).toLocaleString();
                 contenedor.innerHTML += `
-                    <div class="comentario-blog">
+                    <div class="comentario-blog" data-id="${c.id_blog || idx}">
                         <strong>${nombre}</strong> <span class="fecha">${fecha}</span>
                         <p>${c.comentario}</p>
+                        ${esAdmin ? `<button class="btn-eliminar-comentario" data-id="${c.id_blog}">Eliminar</button>` : ''}
                     </div>
                 `;
             });
+
+            // Asigna eventos a los botones de eliminar (solo si es admin)
+            if (esAdmin) {
+                document.querySelectorAll('.btn-eliminar-comentario').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id_blog = this.getAttribute('data-id');
+                        if (confirm('¿Seguro que deseas eliminar este comentario?')) {
+                            eliminarComentario(id_blog);
+                        }
+                    });
+                });
+            }
         });
+}
+
+// Función para eliminar comentario
+function eliminarComentario(id_blog) {
+    fetch(`http://localhost:8080/api/blog/${id_blog}`, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            mostrarComentarios();
+        } else {
+            alert('No se pudo eliminar el comentario');
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {

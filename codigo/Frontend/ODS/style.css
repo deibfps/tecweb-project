@@ -213,3 +213,18 @@ footer{
     color: #222;
     word-break: break-word;
 }
+
+.btn-eliminar-comentario {
+    background: #b94a48;
+    color: #fff;
+    border: none;
+    border-radius: 1.2rem;
+    padding: 0.3em 1em;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 0.5em;
+    transition: background 0.2s;
+}
+.btn-eliminar-comentario:hover {
+    background: #a94442;
+}
