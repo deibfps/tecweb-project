@@ -167,10 +167,28 @@ $app->post('/api/perfil', function ($request, $response, $args) {
     $biografia = $data['biografia'];
 
     $mysqli = getMySQLi();
-    $stmt = $mysqli->prepare("INSERT INTO perfil_usuario (id_usuario, nombre, apellido, pronombres, fecha_nacimiento, biografia) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssss", $id_usuario, $nombre, $apellido, $pronombres, $fecha_nacimiento, $biografia);
 
-    if ($stmt->execute()) {
+    // Verifica si ya existe perfil
+    $stmt = $mysqli->prepare("SELECT id_usuario FROM perfil_usuario WHERE id_usuario = ?");
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        // Si existe, actualiza
+        $stmt->close();
+        $stmt = $mysqli->prepare("UPDATE perfil_usuario SET nombre=?, apellido=?, pronombres=?, fecha_nacimiento=?, biografia=? WHERE id_usuario=?");
+        $stmt->bind_param("sssssi", $nombre, $apellido, $pronombres, $fecha_nacimiento, $biografia, $id_usuario);
+        $success = $stmt->execute();
+    } else {
+        // Si no existe, inserta
+        $stmt->close();
+        $stmt = $mysqli->prepare("INSERT INTO perfil_usuario (id_usuario, nombre, apellido, pronombres, fecha_nacimiento, biografia) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $id_usuario, $nombre, $apellido, $pronombres, $fecha_nacimiento, $biografia);
+        $success = $stmt->execute();
+    }
+
+    if ($success) {
         $response->getBody()->write(json_encode(['success' => true]));
     } else {
         $response->getBody()->write(json_encode(['success' => false, 'message' => 'Error al guardar perfil']));

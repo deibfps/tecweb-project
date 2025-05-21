@@ -44,7 +44,7 @@
                     <p id="biografia">
                         
                     </p>
-                    <button class="submit">Editar mi perfil</button>
+                    <button class="submit" onclick="editarPerfil()">Editar mi perfil</button>
                     <button class="logout" onclick="logout()" style="margin-top:10px;">Cerrar sesión</button>
                 </div>
             </div>
@@ -92,6 +92,10 @@ function logout() {
     localStorage.removeItem('rol');
     localStorage.removeItem('id_usuario');
     window.location.href = '../Login/index.html';
+}
+
+function editarPerfil() {
+    window.location.href = '../Profile/index.html?edit=1';
 }
 </script>
 </body>

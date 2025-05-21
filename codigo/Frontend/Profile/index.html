@@ -6,7 +6,7 @@
     <title>Perfil - Plantasia</title>
     <link rel="stylesheet" href="../variables.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!--Agregar íconos de bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body> 
     <header>
@@ -14,9 +14,9 @@
         <nav>
             <ul>
                 <li><a href="../Home/index.html">Home</a></li>
-                <li><a href="../Home/index.html #SobreNosotros">Nosotros</a></li>
+                <li><a href="../Home/index.html#SobreNosotros">Nosotros</a></li>
                 <li><a href="../Profile/index.html">Perfil</a></li>
-                </ul>
+            </ul>
         </nav>
     </header>
     <main>
@@ -70,7 +70,7 @@
             </form>
         </section>
     </main>
-        <button onclick="logout()">Cerrar sesión</button>
+    <button onclick="logout()">Cerrar sesión</button>
 
     <footer>
         <div id="Plantasia">
@@ -82,7 +82,6 @@
         </div>
     </footer>
     <script>
-// Si el usuario NO ha iniciado sesión, redirige al login
 if (!localStorage.getItem('usuarioLogueado')) {
     alert("Inicia sesión para acceder a contenido exclusivo");
     window.location.href = '../Login/index.html';
@@ -90,32 +89,48 @@ if (!localStorage.getItem('usuarioLogueado')) {
 
 function logout() {
     localStorage.removeItem('usuarioLogueado');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('id_usuario');
     window.location.href = '../Login/index.html';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Verifica si el usuario está logueado
     const id_usuario = localStorage.getItem('id_usuario');
     if (!id_usuario) {
         window.location.href = '../Login/index.html';
         return;
     }
 
-    // Consulta al backend si ya tiene perfil
-    fetch(`http://localhost:8080/api/perfil/${id_usuario}`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.exists) {
-                // Si ya tiene perfil, redirige a ProfileInfo
-                window.location.href = '../ProfileInfo/index.html';
-            }
-            // Si no tiene perfil, se queda en esta página y muestra el formulario
-        })
-        .catch(() => alert('Error al verificar perfil'));
+    const params = new URLSearchParams(window.location.search);
+    const isEdit = params.get('edit') === '1';
+
+    // Solo redirige si NO es edición y ya tiene perfil
+    if (!isEdit) {
+        fetch(`http://localhost:8080/api/perfil/${id_usuario}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.exists) {
+                    window.location.href = '../ProfileInfo/index.html';
+                }
+            })
+            .catch(() => alert('Error al verificar perfil'));
+    } else {
+        // Si es edición, autorrellena el formulario
+        fetch(`http://localhost:8080/api/perfil/${id_usuario}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.exists) {
+                    document.getElementById('nombre').value = data.perfil.nombre;
+                    document.getElementById('apellido').value = data.perfil.apellido;
+                    document.getElementById('pronombres').value = data.perfil.pronombres;
+                    document.getElementById('fecha-nacimiento').value = data.perfil.fecha_nacimiento;
+                    document.getElementById('biografia').value = data.perfil.biografia;
+                }
+            });
+    }
 
     document.getElementById('formPerfil').addEventListener('submit', function(e) {
         e.preventDefault();
-        const id_usuario = localStorage.getItem('id_usuario');
         const nombre = document.getElementById('nombre').value;
         const apellido = document.getElementById('apellido').value;
         const pronombres = document.getElementById('pronombres').value;
