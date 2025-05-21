@@ -140,17 +140,5 @@ main {
     text-decoration: underline;
 }
 
-.create-account .admin-code {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
 
-.create-account .admin-code a {
-    color: var(--verdeGlow);
-    text-decoration: none;
-    font-weight: bold;
-}
 
-.create-account .admin-code a:hover {
-    text-decoration: underline;
-}

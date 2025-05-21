@@ -81,5 +81,57 @@ $app->post('/api/login', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->post('/api/signup', function ($request, $response, $args) {
+    $data = $request->getParsedBody();
+    $correo = $data['email'] ?? '';
+    $password = $data['password'] ?? '';
+    $rol = $data['rol'] ?? 'usuario';
+
+    if (!$correo || !$password) {
+        $response->getBody()->write(json_encode([
+            'success' => false,
+            'message' => 'Correo y contraseña son obligatorios'
+        ]));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    $mysqli = getMySQLi();
+
+    // Verifica si el correo ya existe
+    $stmt = $mysqli->prepare("SELECT id_usuario FROM usuario WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        $response->getBody()->write(json_encode([
+            'success' => false,
+            'message' => 'El correo ya está registrado'
+        ]));
+        $stmt->close();
+        $mysqli->close();
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+    $stmt->close();
+
+    // Inserta el usuario (hasheando la contraseña)
+    $hash = hash('sha256', $password);
+    $stmt = $mysqli->prepare("INSERT INTO usuario (correo, contraseña, rol) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $correo, $hash, $rol);
+
+    if ($stmt->execute()) {
+        $response->getBody()->write(json_encode([
+            'success' => true,
+            'message' => 'Usuario registrado correctamente'
+        ]));
+    } else {
+        $response->getBody()->write(json_encode([
+            'success' => false,
+            'message' => 'Error al registrar usuario'
+        ]));
+    }
+    $stmt->close();
+    $mysqli->close();
+    return $response->withHeader('Content-Type', 'application/json');
+});
 
 $app->run();
