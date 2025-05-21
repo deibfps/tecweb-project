@@ -29,6 +29,7 @@ $app->get('/api/db-test', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+//Endpoint para iniciar sesión
 $app->post('/api/login', function ($request, $response, $args) {
     $data = $request->getParsedBody();
     $correo = $data['email'] ?? '';
@@ -81,6 +82,8 @@ $app->post('/api/login', function ($request, $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+
+// Endpoint para registrar un nuevo usuario
 $app->post('/api/signup', function ($request, $response, $args) {
     $data = $request->getParsedBody();
     $correo = $data['email'] ?? '';
@@ -128,6 +131,49 @@ $app->post('/api/signup', function ($request, $response, $args) {
             'success' => false,
             'message' => 'Error al registrar usuario'
         ]));
+    }
+    $stmt->close();
+    $mysqli->close();
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/api/perfil/{id_usuario}', function ($request, $response, $args) {
+    $id_usuario = $args['id_usuario'];
+    $mysqli = getMySQLi();
+
+    $stmt = $mysqli->prepare("SELECT * FROM perfil_usuario WHERE id_usuario = ?");
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $perfil = $result->fetch_assoc();
+
+    if ($perfil) {
+        $response->getBody()->write(json_encode(['exists' => true, 'perfil' => $perfil]));
+    } else {
+        $response->getBody()->write(json_encode(['exists' => false]));
+    }
+    $stmt->close();
+    $mysqli->close();
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->post('/api/perfil', function ($request, $response, $args) {
+    $data = $request->getParsedBody();
+    $id_usuario = $data['id_usuario'];
+    $nombre = $data['nombre'];
+    $apellido = $data['apellido'];
+    $pronombres = $data['pronombres'];
+    $fecha_nacimiento = $data['fecha_nacimiento'];
+    $biografia = $data['biografia'];
+
+    $mysqli = getMySQLi();
+    $stmt = $mysqli->prepare("INSERT INTO perfil_usuario (id_usuario, nombre, apellido, pronombres, fecha_nacimiento, biografia) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $id_usuario, $nombre, $apellido, $pronombres, $fecha_nacimiento, $biografia);
+
+    if ($stmt->execute()) {
+        $response->getBody()->write(json_encode(['success' => true]));
+    } else {
+        $response->getBody()->write(json_encode(['success' => false, 'message' => 'Error al guardar perfil']));
     }
     $stmt->close();
     $mysqli->close();
