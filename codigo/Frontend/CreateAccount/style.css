@@ -57,6 +57,51 @@ main {
 }
 
 /* ----------------------------- */
+/* Estilos para tipo de cuenta */
+/* ----------------------------- */
+
+#accountTypeLabel {
+    padding-bottom: 1em;
+}
+
+#accountType {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 2px solid var(--verdeClaro);
+    border-radius: var(--radiusInput);
+    padding: 0.7em 1em;
+    background-color: white;
+    color: var(--grisPlaceHolder);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#accountType:hover {
+    outline: none;
+    border-color: var(--verdeGlow);
+    box-shadow: 0 0 0.75rem rgba(136, 176, 75, 0.8);
+}
+
+#accountType:focus {
+    outline: none;
+    border-color: var(--verdeGlow);
+    box-shadow: 0 0 0.75rem rgba(136, 176, 75, 0.8);
+}
+
+/* Mejora de responsividad y estilo para el label y select de Tipo de cuenta */
+.input-group label[for="accountType"] {
+    position: static;
+    display: block;
+    margin-bottom: 0.4em;
+    font-size: 1rem;
+    color: var(--verdeGlow);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+}
+
+/* ----------------------------- */
 /* Estilos para etiqueta flotante */
 /* ----------------------------- */
 
@@ -99,18 +144,44 @@ main {
 }
 
 /* Mover la etiqueta cuando el input está enfocado o tiene texto */
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
+.input-group input:focus + label[for="email"],
+.input-group input:not(:placeholder-shown) + label[for="email"] {
     top: 0.3rem;
     left: 0.6rem;
     font-size: 0.75rem;
     color: var(--verdeGlow);
 }
 
+.input-group input:focus + label[for="password"],
+.input-group input:not(:placeholder-shown) + label[for="password"] {
+    top: 0.3rem;
+    left: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--verdeGlow);
+}
+
+.input-group label[for="adminKey"] {
+    position: absolute;
+    top: .85rem;
+    left: 7.125rem;
+    font-size: 1rem;
+    color: var(--grisPlaceHolder);
+    padding: 0 0.25rem;
+    transition: 0.25s ease all;
+    pointer-events: none;
+}
+
+.input-group input:focus + label[for="adminKey"],
+.input-group input:not(:placeholder-shown) + label[for="adminKey"] {
+    top: 0.275rem;
+    left: 7rem;
+    font-size: 0.75rem;
+    color: var(--verdeGlow);
+}
 /* ----------------------------- */
 
 .create-account .btn-create {
-    background-color: var(--verdeGlow);
+    background-color: var(--verdeGlowLight);
     color: var(--hueso);
     font-size: 1rem;
     padding: 1rem;
@@ -122,7 +193,7 @@ main {
 }
 
 .create-account .btn-create:hover {
-    background-color: var(--verdeMatcha);
+    background-color: var(--verdeGlowDark);
 }
 
 .create-account .register-link {
@@ -138,6 +209,20 @@ main {
 
 .create-account .register-link a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .create-account {
+        padding: 1rem;
+        border-radius: 2rem;
+    }
+    #accountType {
+        font-size: 0.95rem;
+        padding: 0.6em 0.8em;
+    }
+    .input-group label[for="accountType"] {
+        font-size: 0.95rem;
+    }
 }
 
 
