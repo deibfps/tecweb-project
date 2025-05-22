@@ -14,7 +14,7 @@ Notas: Para botones con hover
 
 :root {
     /* Colores principales : */
-    --verdeMatcha: #74A662;
+    --verdeMatcha: #7EAB57;
     --verdeMatchaDark: #5F874F;
     --verdeMatchaLight: #97C884;
     --hueso: #f6f5ef; /* Blanco */
@@ -25,7 +25,6 @@ Notas: Para botones con hover
     --verdeGlowDark: #6B8E3A;
     --verdeGlowLight: #A6CC68;
     --grisPlaceHolder: #747475;
-
     /* Tipografía */
     --especial: 'Playfair Display', serif;
     --titulos: 'League Gothic', sans-serif;
