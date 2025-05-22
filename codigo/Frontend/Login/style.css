@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: var(--texto);
-    background-color: var(--verdeClaro);
+    background-color: var(--verdeMatcha);
     color: var(--negro);
 }
 
@@ -24,7 +24,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 80vh;
-    background-color: var(--verdeClaro);
+    background-color: var(--verdeMatcha);
     padding: 1rem;
 }
 
@@ -111,7 +111,7 @@ main {
 /* ----------------------------- */
 
 .login .btn-login {
-    background-color: var(--verdeClaro);
+    background-color: var(--verdeMatchaLight);
     color: var(--hueso);
     font-size: 1rem;
     padding: 1rem;
@@ -123,7 +123,7 @@ main {
 }
 
 .login .btn-login:hover {
-    background-color: var(--verdeMatcha);
+    background-color: var(--verdeMatchaDark);
 }
 
 .login .register-link {

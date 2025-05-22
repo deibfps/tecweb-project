@@ -1,11 +1,13 @@
 document.getElementById('accountType').addEventListener('change', function() {
     const adminKeyGroup = document.getElementById('adminKeyGroup');
     if (this.value === 'admin') {
-        adminKeyGroup.style.display = 'block';
+        adminKeyGroup.classList.add('visible');
         document.getElementById('adminKey').required = true;
     } else {
-        adminKeyGroup.style.display = 'none';
+        adminKeyGroup.classList.remove('visible');
         document.getElementById('adminKey').required = false;
+        // Limpia el valor del campo y el input visualmente
+        document.getElementById('adminKey').value = '';
     }
 });
 
@@ -48,7 +50,12 @@ document.getElementById('createAccountForm').addEventListener('submit', function
 
 document.getElementById('togglePassword').addEventListener('click', function () {
     const passwordInput = document.getElementById('password');
-    const type = passwordInput.type === 'password' ? 'text' : 'password';
-    passwordInput.type = type;
-    this.textContent = type === 'password' ? '👁️' : '🙈';
+    const eyeOpen = document.getElementById('eyeOpen');
+    const eyeClosed = document.getElementById('eyeClosed');
+
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+
+    eyeOpen.style.display = isPassword ? 'none' : 'inline';
+    eyeClosed.style.display = isPassword ? 'inline' : 'none';
 });

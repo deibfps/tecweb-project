@@ -4,18 +4,27 @@ Este documento tiene como fin el poder agilizar el diseño, reutilizando variabl
 para evitar usar colores dispersos o fuentes incorrectas, para poder hacer uso de él,
 vease el ejemplo de styleindex */
 
+/*
+Notas: Para botones con hover
+            Color inicial: var(--verdeGlow)
+            Color hover:   var(--verdeMatchaDark)
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     /* Colores principales : */
-    --verdeMatcha: #7B904B;
+    --verdeMatcha: #7EAB57;
+    --verdeMatchaDark: #5F874F;
+    --verdeMatchaLight: #97C884;
     --hueso: #f6f5ef; /* Blanco */
     --negro: #000000;
     --verdeClaro: #aec892;
     --verdeApagado: #8e9d8a;
     --verdeGlow: #88b04b;
+    --verdeGlowDark: #6B8E3A;
+    --verdeGlowLight: #A6CC68;
     --grisPlaceHolder: #747475;
-
     /* Tipografía */
     --especial: 'Playfair Display', serif;
     --titulos: 'League Gothic', sans-serif;
