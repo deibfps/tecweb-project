@@ -178,7 +178,21 @@ main {
     font-size: 0.75rem;
     color: var(--verdeGlow);
 }
+
 /* ----------------------------- */
+/* Transición suave para mostrar/ocultar el campo adminKey */
+#adminKeyGroup {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    display: block !important;
+}
+
+#adminKeyGroup.visible {
+    max-height: 100px;
+    opacity: 1;
+}
 
 .create-account .btn-create {
     background-color: var(--verdeGlowLight);

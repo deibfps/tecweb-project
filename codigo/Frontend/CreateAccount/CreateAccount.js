@@ -1,11 +1,13 @@
 document.getElementById('accountType').addEventListener('change', function() {
     const adminKeyGroup = document.getElementById('adminKeyGroup');
     if (this.value === 'admin') {
-        adminKeyGroup.style.display = 'block';
+        adminKeyGroup.classList.add('visible');
         document.getElementById('adminKey').required = true;
     } else {
-        adminKeyGroup.style.display = 'none';
+        adminKeyGroup.classList.remove('visible');
         document.getElementById('adminKey').required = false;
+        // Limpia el valor del campo y el input visualmente
+        document.getElementById('adminKey').value = '';
     }
 });
 
