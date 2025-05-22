@@ -42,7 +42,7 @@ if (!localStorage.getItem('usuarioLogueado')) {
         papel clave desde la innovación.
       </p>
       <div class="imagen-eco">
-        <img src="https://img.freepik.com/vector-premium/bosquejo-tinta-arbol-pino-ilustracion-vector-dibujado-mano-dibujo-estilo-vintage_63088348.jpg" alt="Árbol estilo vectorial" />
+        <img src="../../Images/mexico.png" alt="Fauna mexicana" width="600rem" height="300rem"/>
       </div>
     </section>
 
@@ -66,47 +66,49 @@ if (!localStorage.getItem('usuarioLogueado')) {
 
 <section class="stats">
   <h3>Estados con más miembros Plantasísticos</h3>
-  <div class="chart">
-    <label for="estado">¿De qué estado eres?</label><br><br>
-    <select id="estado" name="estado">
-      <option value="" disabled selected>Selecciona tu estado</option>
-      <option>Baja California</option>
-      <option>Baja California Sur</option>
-      <option>Campeche</option>
-      <option>CDMX</option>
-      <option>Chiapas</option>
-      <option>Chihuahua</option>
-      <option>Coahuila</option>
-      <option>Colima</option>
-      <option>Durango</option>
-      <option>Estado de México</option>
-      <option>Guanajuato</option>
-      <option>Guerrero</option>
-      <option>Hidalgo</option>
-      <option>Jalisco</option>
-      <option>Michoacán</option>
-      <option>Morelos</option>
-      <option>Nayarit</option>
-      <option>Nuevo León</option>
-      <option>Oaxaca</option>
-      <option>Puebla</option>
-      <option>Querétaro</option>
-      <option>Quintana Roo</option>
-      <option>San Luis Potosí</option>
-      <option>Sinaloa</option>
-      <option>Sonora</option>
-      <option>Tabasco</option>
-      <option>Tamaulipas</option>
-      <option>Tlaxcala</option>
-      <option>Veracruz</option>
-      <option>Yucatán</option>
-      <option>Zacatecas</option>
-    </select>
-    <br><br>
-    <button id="enviarEstadoBtn" type="button">Enviar</button>
-    <br><br>
-    <canvas id="estadosChart" width="300" height="300"></canvas>
-  </div>
+  <div id="Miembros">
+      <div class="chart">
+          <label for="estado">¿De qué estado eres?</label><br><br>
+          <select id="estado" name="estado">
+            <option value="" disabled selected>Selecciona tu estado</option>
+            <option>Baja California</option>
+            <option>Baja California Sur</option>
+            <option>Campeche</option>
+            <option>CDMX</option>
+            <option>Chiapas</option>
+            <option>Chihuahua</option>
+            <option>Coahuila</option>
+            <option>Colima</option>
+            <option>Durango</option>
+            <option>Estado de México</option>
+            <option>Guanajuato</option>
+            <option>Guerrero</option>
+            <option>Hidalgo</option>
+            <option>Jalisco</option>
+            <option>Michoacán</option>
+            <option>Morelos</option>
+            <option>Nayarit</option>
+            <option>Nuevo León</option>
+            <option>Oaxaca</option>
+            <option>Puebla</option>
+            <option>Querétaro</option>
+            <option>Quintana Roo</option>
+            <option>San Luis Potosí</option>
+            <option>Sinaloa</option>
+            <option>Sonora</option>
+            <option>Tabasco</option>
+            <option>Tamaulipas</option>
+            <option>Tlaxcala</option>
+            <option>Veracruz</option>
+            <option>Yucatán</option>
+            <option>Zacatecas</option>
+          </select>
+          <br><br>
+          <button id="enviarEstadoBtn" type="button">Enviar</button>
+          <br><br>
+        </div>
+          <canvas id="estadosChart"></canvas>
+      </div>
 </section>
 
     <section class="biodiversity">

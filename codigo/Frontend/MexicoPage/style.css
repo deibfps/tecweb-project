@@ -23,16 +23,17 @@ main {
 
 /* NAV */
 header {
-  background-color: var(--hueso);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
+    background-color: var(--hueso); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; /* <- Distribuye h1 a la izquierda y nav a la derecha */
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -73,19 +74,14 @@ header nav ul li a:hover {
 .intro p {
   text-align: justify;
   font-size: 1.05rem;
-  margin-bottom: 2rem;
+  margin-bottom: -2rem;
 }
 
 .imagen-eco {
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
 }
 
-.imagen-eco img {
-  width: 130px;
-  height: auto;
-}
 
 /* TRANSICIÓN */
 .transition h3 {
@@ -121,7 +117,6 @@ header nav ul li a:hover {
 
 .stats h3 {
   font-size: 1.8rem;
-  margin-bottom: 1rem;
   font-weight: bold;
 }
 
@@ -129,8 +124,15 @@ header nav ul li a:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1rem;
 }
 
+#Miembros{
+  display: flex;
+}
+#Miembros > div {
+  width: 50%;
+}
 .chart label {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -138,14 +140,24 @@ header nav ul li a:hover {
 
 .chart select {
   font-size: 1rem;
-  padding: 0.4rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 0.5rem;
   border: none;
   color: var(--verdeMatcha);
   cursor: pointer;
   font-weight: bold;
+  margin-top: -2rem;
 }
 
+#estadosChart {
+    width: 28rem !important;
+    height: 12rem !important;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin-top: 3rem;
+
+}
 
 /* BIODIVERSIDAD */
 .biodiversity h3 {
@@ -163,7 +175,7 @@ header nav ul li a:hover {
 
 /* QUIZ */
 .quiz {
-  background-color: #c3dea3;
+  background-color: var(--verdeMatcha);
   padding: 2rem 1.5rem 3rem;
   margin-top: 3rem;
   color: white;
@@ -235,5 +247,42 @@ footer {
   font-family: var(--texto);
 }
 
-
+/* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
+body button:not(.Btn) {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--verdeMatcha);
+    transition: all 0.3s ease; /* Reducir la duración para mejor experiencia */
+    font-size: 1rem; /* Tamaño relativo */
+    position: relative;
+    overflow: hidden;
+    font-family: var(--texto);
+    background-color: var(--hueso);
+    border: 0.1rem solid var(--verdeMatcha);
+    margin-top: -2rem;
+}
+body button:not(.Btn):hover {
+    color: var(--hueso);
+    transform: scale(1.1);
+    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
+}
+body button:not(.Btn)::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--verdeMatcha);
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
+}
+body button:not(.Btn):hover::before {
+    width: 250%;
+}
+/* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
 

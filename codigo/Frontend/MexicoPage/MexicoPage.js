@@ -30,6 +30,8 @@ function cargarGraficaEstados() {
             estadosChart.data.datasets[0].data = values;
             estadosChart.update();
         } else {
+            const colorHueso = getComputedStyle(document.documentElement).getPropertyValue('--hueso').trim() || '#f8f8f0';
+
             const ctx = document.getElementById('estadosChart').getContext('2d');
             estadosChart = new Chart(ctx, {
                 type: 'pie',
@@ -45,7 +47,25 @@ function cargarGraficaEstados() {
                 options: {
                     responsive: true,
                     plugins: {
-                        legend: { position: 'bottom' }
+                        legend: 
+                        {
+                            labels: {
+                                color: colorHueso
+                            }
+                        }
+                    },
+                    // Para los labels de tooltips:
+                    plugins: {
+                        legend: {
+                            position:'right',
+                            labels: {
+                                color: colorHueso
+                            }
+                        },
+                        tooltip: {
+                            bodyColor: colorHueso,
+                            titleColor: colorHueso
+                        }
                     }
                 }
             });
@@ -61,11 +81,21 @@ function mostrarResultadoQuiz(resultado) {
 function calcularResultado(respuestas) {
     const totalSi = respuestas.filter(Boolean).length;
     if (totalSi >= 6) {
-        return "Líder de la Ecoaldea: Podrías dirigir comunidades sostenibles sin Wi-Fi.";
+        return `<h2 style="font-family:var(--especial);margin-bottom:0.5em;">Líder de la Ecoaldea</h2>
+                Podrías dirigir comunidades sostenibles sin Wi-Fi, le sabes al reciclaje y siempre <br>
+                tienes una planta en la mano, cargas termo y bolsita reusable aesthetic, gracias a ti <br>
+                el mundo es un lugar mejor.`;
     } else if (totalSi > 4) {
-        return "Sobreviviente con estilo: Te adaptarías bien, puedes seguir aprendiendo.";
+        return `<h2 style="font-family:var(--especial);margin-bottom:0.5em;">Sobreviviente con estilo</h2>
+                Te adaptarías bien y sí la armas, te encanta presumir que eres ecofriedly pero tu y yo <br>
+                sabemos que todavia te falta, pero vas en buen camino. Te gustan las plantas y los animales <br>
+                serías un sobreviviente muy solidario y good vibes.`;
     } else {
-        return "Climáticamente KO: Necesitas entrenar... o derretirte con el resto.";
+        return `<h2 style="font-family:var(--especial);margin-bottom:0.5em;">Climáticamente KO</h2>
+                Ya ni le muevas hijo, cuando no le sabes, no le sabes <br>
+                Deberias de empezar a tomar acción si no quieres estar a 40 grados en diciembre <br>
+                y no, no es normal. Te falta mucho para ser un ecoaldeano, pero no te preocupes <br>
+                siempre puedes empezar a aprender, no es tarde.`;
     }
 }
 
