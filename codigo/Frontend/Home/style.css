@@ -54,11 +54,13 @@ body button:not(.Btn) {
     font-family: var(--texto);
     background-color: var(--hueso);
     border: 0.1rem solid var(--verdeMatcha);
+    box-shadow: 0 0 0 0 var(--verdeMatcha); /* Elimina sombra inicial */
 }
 body button:not(.Btn):hover {
     color: var(--hueso);
     transform: scale(1.1);
-    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
+    background-color: var(--verdeMatcha);
+    border-color: var(--verdeMatcha);
 }
 body button:not(.Btn)::before {
     content: "";
@@ -70,10 +72,11 @@ body button:not(.Btn)::before {
     background-color: var(--verdeMatcha);
     transform: skewX(45deg);
     z-index: -1;
-    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
+    transition: width 0.45s ease; /* Reducir la duración para mejor experiencia */
 }
 body button:not(.Btn):hover::before {
     width: 250%;
+    background-color: var(--verdeMatcha);
 }
 /* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
     
@@ -319,7 +322,7 @@ header nav ul li a:hover {
     width: 17rem;
     border-radius: 1.5rem;
     line-height: 1.6;
-    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.48s cubic-bezier(0.23, 1, 0.32, 1);
     margin-top: 2rem;
     margin-bottom: 2rem;
     }
@@ -378,22 +381,39 @@ header nav ul li a:hover {
     .content h3{
         padding-top: 3rem;
     }
-    .card:hover {
-    transform: translate(0px, -16px);
-    }
-    .card:hover .content::before {
-    rotate: -8deg;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    }
-    .card:hover .content::after {
-    rotate: 8deg;
-    top: 0;
-    width: 100%;
-    height: 100%;
+
+    .card {
+        box-shadow: 0 2px 1px #6e749b17,
+    0 4px 2px #6e749b17, 0 8px 4px #6e749b17,
+    0 16px 8px #6e749b17, 0 32px 16px #6e749b17;
     }
 
+    .card:hover {
+        transform: translate(0px, -16px);
+        box-shadow: 0 8px 32px 0 #6e749b33;
+    }
+    .card .content::before,
+    .card .content::after {
+        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .card:hover .content::before {
+        rotate: -8deg;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .card:hover .content::after {
+        rotate: 8deg;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    /* Mejora: animación suave al quitar el hover */
+    .card,
+    .card .content::before,
+    .card .content::after {
+        will-change: transform, box-shadow, width, height, top, rotate;
+    }
     /* ''''''''''''''''''''''''''FIN DE GETTING GREEN SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
 
 /* ''''''''''''''''''''''''''ABOUT US SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
