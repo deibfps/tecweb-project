@@ -61,6 +61,7 @@ body button:not(.Btn):hover {
     transform: scale(1.1);
     background-color: var(--verdeMatcha);
     border-color: var(--verdeMatcha);
+    transition: all 1s ease; /* Reducir la duración para mejor experiencia */
 }
 body button:not(.Btn)::before {
     content: "";
@@ -72,7 +73,7 @@ body button:not(.Btn)::before {
     background-color: var(--verdeMatcha);
     transform: skewX(45deg);
     z-index: -1;
-    transition: width 0.45s ease; /* Reducir la duración para mejor experiencia */
+    transition: width 1s ease; /* Reducir la duración para mejor experiencia */
 }
 body button:not(.Btn):hover::before {
     width: 250%;
@@ -426,6 +427,10 @@ header nav ul li a:hover {
     font-weight: bolder;
     padding-bottom: 1.5rem;
     font-size: 2.3rem;
+}
+
+#SobreNosotros {
+    scroll-margin-top: 7.25rem;
 }
 
 /* ''''''''''''''''''''''''''FIN ABOUT US SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
