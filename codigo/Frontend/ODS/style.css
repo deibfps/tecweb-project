@@ -18,7 +18,7 @@ html, body {
     overflow-x: hidden;
 }
 body {
-    background-color: var(--hueso);
+    background-color: var(--verdeMatchaLighter);
     margin: 0;
     padding-top: 8rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
 }
@@ -27,14 +27,27 @@ body section{
     padding: var(--paddingGeneral);
 }
 
+#thought {
+
+    padding-left: 0;
+    text-align: center;
+    align-self: center;
+    position: relative;
+    top: 1.5em;
+    font-family: var(--notoSans);
+    font-size: 1.5rem;
+    color: var(--verdeOscuro);
+}
+
 body p {
     font-family: var(--texto);
     font-size: 1rem; /* Tamaño de fuente adaptable */
     line-height: 1.5rem;
+    display: flex;
 }
 
 body h2 {
-    font-family: var(--titulos);
+    font-family: var(--notoSans);
     font-size: 1.7rem; /* Tamaño de fuente adaptable */
     font-weight: bold;
 }
@@ -80,45 +93,6 @@ header nav ul li a:hover {
     color: var(--verdeMatcha); /* Cambia a verde matcha al pasar el cursor */
 }
 /* ''''''''''''''''''''''''''FIN DE ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
-/* ''''''''''''''''''''''''''ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
-body button {
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 1.8rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: var(--verdeMatcha);
-    transition: all 0.3s ease; /* Reducir la duración para mejor experiencia */
-    font-size: 1rem; /* Tamaño relativo */
-    position: relative;
-    overflow: hidden;
-    font-family: var(--texto);
-    background-color: var(--hueso);
-    border: 0.1rem solid var(--verdeMatcha);
-    margin: 3rem 0;
-}
-body button:hover {
-    color: var(--hueso);
-    transform: scale(1.1);
-    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
-}
-body button::before {
-    content: "";
-    position: absolute;
-    left: -1rem;
-    top: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--verdeMatcha);
-    transform: skewX(45deg);
-    z-index: -1;
-    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
-}
-body button:hover::before {
-    width: 250%;
-}
-/* '''''''''''''''''''''''''' FIN DE ESTILO DE BOTONES '''''''''''''''''''''''''''''''''''''''''''''''''*/
-
 /* ''''''''''''''''''''''''''PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
 footer{
     background-color: var(--verdeMatcha);
@@ -129,61 +103,110 @@ footer{
 
 /* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
 #blog {
-    background: #c3dba0;
+    background: var(--verdeMatcha);
     padding: 0;
     margin: 2em auto;
-    border-radius: 0 0 20px 20px;
+    border-radius: 2em;
     max-width: 600px;
+    box-shadow: 8px 8px 16px 8px rgba(0,0,0,0.25);
 }
 
 #blogForm {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #c3dba0;
-    padding: 1em 0.5em;
-    border-radius: 0 0 20px 20px;
-    gap: 1em;
+    background: var(--verdeMatcha);
+    padding: 2em 1em;
+    border-radius: 1em;
+    gap: 2em;
+    min-height: 220px;
 }
+
+.blog-input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+
+/* POR PROBARSE /*
+
+                                    */ /* Estilo para el label flotante del textarea */ /*
+
+.textarea-group {
+    position: relative;
+    width: 100%;
+}
+
+.textarea-group label {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    font-size: 1rem;
+    color: var(--grisPlaceHolder);
+    padding: 0 0.25rem;
+    background: transparent;
+    transition: 0.25s ease all;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.textarea-group textarea:focus + label,
+.textarea-group textarea:not(:placeholder-shown) + label {
+    top: 0.3rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    color: var(--verdeGlow);
+    background: var(--hueso);
+    z-index: 3;
+}
+
+/* POR PROBARSE */
 
 #comentario {
     flex: 1;
-    border-radius: 2em;
+    border-radius: 1rem;
     border: none;
-    padding: 0.7em 1.2em;
+    padding: 1em;
     font-size: 1em;
-    background: #f8f8f0;
+    background: var(--hueso);
     outline: none;
     resize: none;
     min-height: 2.5em;
-    max-width: 70%;
+    max-width: 80%;
 }
 
 #blogForm button[type="submit"] {
-    background: #6b9e3f;
+    background: var(--verdeMatchaLight);
     color: #fff;
     border: none;
-    border-radius: 2em;
+    border-radius: 1.375rem;
     padding: 0.7em 2em;
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    margin: 0;
+    transition: 0.3s;
+    height: 3.5rem;
 }
 
 #blogForm button[type="submit"]:hover {
-    background: #4e7c2c;
+    background: var(--verdeMatchaDark);
+    transition: 0.3s;
 }
 
 #blogComentarios {
-    background: #f8f8f0;
+    background: var(--hueso);
     padding: 1.5em 1em 1em 1em;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 2em 2em;
     min-height: 120px;
     max-height: 300px;
     overflow-y: auto;
     margin-top: 1em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 8px 16px -8px rgba(0,0,0,0.25);
 }
 
 .comentario-blog {

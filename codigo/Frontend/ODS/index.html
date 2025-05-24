@@ -27,11 +27,12 @@
 </section>
 
 <section id="blog">
-    <h3>¿Qué piensas del ODS 13?</h3>
+    <h3 id="thought">¿Qué piensas del ODS 13?</h3>
     <form id="blogForm">
-        <textarea id="comentario" maxlength="300" placeholder="Escribe tu comentario (máx. 300 caracteres)" required></textarea>
-        <br>
-        <button type="submit">Enviar comentario</button>
+        <div class="blog-input-row">
+            <textarea id="comentario" maxlength="300" placeholder="Escribe tu comentario (máx. 300 caracteres)" required></textarea>
+            <button type="submit">Enviar comentario</button>
+        </div>
     </form>
     <div id="blogComentarios"></div>
 </section>
