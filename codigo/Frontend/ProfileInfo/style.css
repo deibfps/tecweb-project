@@ -80,7 +80,6 @@ main {
     margin-top: 0rem;  
     margin-bottom: 6rem; 
     border-radius: var(--radiusInput);
-    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);*/
     font-family: var(--notoSans);
     color: var(--negro);
 }
@@ -175,6 +174,43 @@ body button::before {
 }
 
 body button:hover::before {
+    width: 250%;
+}
+
+.logout {
+    background-color: var(--hueso);
+    color: var(--TW);
+    border: 0.1rem solid var(--TW);
+    border-radius: 1.8rem;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: var(--texto);
+    padding: 0.8rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.logout::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--TW);
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1s;
+}
+
+.logout:hover {
+    color: white;
+    background-color: var(--TW);
+    box-shadow: 4px 5px 17px -4px var(--TW);
+}
+
+.logout:hover::before {
     width: 250%;
 }
 
