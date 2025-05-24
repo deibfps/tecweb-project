@@ -14,7 +14,7 @@ body {
     font-family: var(--texto);
     background-color: var(--hueso);
     color: var(--negro);
-    padding-top: 4rem; 
+    padding-top: 4rem;
 } 
 
 /* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
@@ -114,8 +114,31 @@ form {
 
 form .btn-submit {
     margin-top: 1.5rem;
-    align-self: center;
+    left: 0px;
+    bottom: 2px;
 }
+
+    #logout {
+        bottom: 175px;
+        left: 865px;
+        background-color: var(--hueso);
+        color: var(--TW);
+        border-color: var(--TW);
+    }
+
+    #logout::before {
+        background-color: var(--TW) !important;
+    }
+
+    #logout:hover {
+        background-color: var(--TW);
+        color: white;
+        box-shadow: 4px 5px 17px -4px var(--TW) !important;
+    }
+
+    #logout:hover::before {
+        background-color: var(--TW) !important;
+    }
 
 label {
     font-size: 0.9rem;
@@ -235,4 +258,3 @@ footer #Plantasia {
 footer #Copyright {
     font-size: 0.9rem;
 }
-
