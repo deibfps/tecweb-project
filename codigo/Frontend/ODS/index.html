@@ -21,6 +21,7 @@
 
 <section>
     <h2>ODS 13: Acción por el clima</h2>
+    <img src="../../Images/Plant.png" id="plantita">
     <p>El ODS 13, titulado "Acción por el clima", es uno de los 17 Objetivos de Desarrollo Sostenible (ODS) establecidos por la ONU dentro de la Agenda 2030. Su meta principal es tomar medidas urgentes para combatir el cambio climático y sus efectos, reconociendo que la crisis climática es uno de los mayores desafíos de nuestro tiempo.
         Este objetivo promueve la reducción de emisiones de gases de efecto invernadero, la transición a energías limpias, la protección de ecosistemas y el fortalecimiento de la resiliencia de comunidades vulnerables frente a fenómenos como huracanes, sequías o incendios forestales. También enfatiza la importancia de que los países integren políticas climáticas en sus planes nacionales y colaboren a nivel global.
         Más allá de lo ambiental, el ODS 13 es una llamada de emergencia: exige responsabilidad intergeneracional, innovación tecnológica y voluntad política. En resumen, no se trata solo de “cuidar el planeta”, sino de asegurar un futuro habitable para todos.</p>
@@ -30,9 +31,17 @@
     <h3 id="thought">¿Qué piensas del ODS 13?</h3>
     <form id="blogForm">
         <div class="blog-input-row">
-            <textarea id="comentario" maxlength="300" placeholder="Escribe tu comentario (máx. 300 caracteres)" required></textarea>
+            <textarea id="comentario" maxlength="300" placeholder="¿Qué estas pensando?" required></textarea>
             <button type="submit">Enviar comentario</button>
+            <div id="contador-circular" style="display:none;">
+                <svg width="40" height="40">
+                    <circle r="18" cx="20" cy="20" fill="none" stroke="#89B96B" stroke-width="4" />
+                    <circle id="contador-circular-barra" r="18" cx="20" cy="20" fill="none" stroke="#1da1f2" stroke-width="4" stroke-linecap="round" stroke-dasharray="113.097" stroke-dashoffset="0" />
+                </svg>
+                <span id="contador-circular-num">300</span>
+            </div>
         </div>
+        <div id="contador-caracteres">300/300</div>
     </form>
     <div id="blogComentarios"></div>
 </section>
@@ -50,5 +59,56 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../adminNav.js"></script>
 <script src="ODS.js"></script>
+
+    <!-- Script del circulito contador de caracteres restantes tipo Twitter -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const textarea = document.getElementById('comentario');
+        const max = textarea.maxLength;
+        const num = document.getElementById('contador-circular-num');
+        const barra = document.getElementById('contador-circular-barra');
+        const circulo = document.getElementById('contador-circular');
+        function actualizarContador() {
+            const restante = max - textarea.value.length;
+            // Mostrar/ocultar círculo según si hay texto
+            if (textarea.value.length > 0) {
+                circulo.style.display = 'flex';
+            } else {
+                circulo.style.display = 'none';
+            }
+            // Mostrar número solo si quedan 50 o menos
+            if (restante <= 50) {
+                num.style.visibility = 'visible';
+                num.textContent = Math.max(0, restante);
+            } else {
+                num.style.visibility = 'hidden';
+            }
+            // Círculo animado (inverso: lleno al inicio, se vacía al escribir)
+            const circ = 2 * Math.PI * 18;
+            const percent = Math.max(0, restante) / max;
+            barra.style.strokeDashoffset = circ * percent;
+            // Colores
+            if (restante > 30) {
+                barra.setAttribute('stroke', '#7FEB45');
+                num.style.color = '#7FEB45';
+            } else if (restante > 10) {
+                barra.setAttribute('stroke', '#ffd501');
+                num.style.color = '#ffd501';
+            } else {
+                barra.setAttribute('stroke', '#f5222c');
+                num.style.color = '#f5222c';
+            }
+            if (restante < 0) {
+                num.textContent = 0;
+                barra.setAttribute('stroke', '#e0245e');
+                num.style.color = '#e0245e';
+            }
+        }
+        textarea.addEventListener('input', actualizarContador);
+        actualizarContador();
+    });
+    </script>
+
 </body>
 </html>

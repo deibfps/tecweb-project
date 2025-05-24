@@ -23,6 +23,14 @@ body {
     padding-top: 8rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
 }
 
+#plantita {
+    width: 50px;
+    height: auto;
+    position: absolute;
+    top: 142px;
+    left: 465px;
+}
+
 body section{
     padding: var(--paddingGeneral);
 }
@@ -40,10 +48,11 @@ body section{
 }
 
 body p {
-    font-family: var(--texto);
+    font-family: var(--notoSans);
     font-size: 1rem; /* Tamaño de fuente adaptable */
     line-height: 1.5rem;
     display: flex;
+    padding-top: 2rem;
 }
 
 body h2 {
@@ -117,66 +126,90 @@ footer{
     align-items: center;
     justify-content: center;
     background: var(--verdeMatcha);
-    padding: 2em 1em;
+    padding: 2em 1.5em .5em;
     border-radius: 1em;
     gap: 2em;
-    min-height: 220px;
+    min-height: 225px;
 }
 
 .blog-input-row {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
     gap: 1em;
     width: 100%;
-}
-
-/* POR PROBARSE /*
-
-                                    */ /* Estilo para el label flotante del textarea */ /*
-
-.textarea-group {
     position: relative;
-    width: 100%;
 }
 
-.textarea-group label {
+/* Contador */
+
+#contador-circular {
     position: absolute;
-    top: 1rem;
-    left: 1.2rem;
-    font-size: 1rem;
-    color: var(--grisPlaceHolder);
-    padding: 0 0.25rem;
-    background: transparent;
-    transition: 0.25s ease all;
-    pointer-events: none;
+    left: 53.5%;
+    top: 79%;
+    transform: translate(-50%, 0);
+    display: none;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
 }
-
-.textarea-group textarea:focus + label,
-.textarea-group textarea:not(:placeholder-shown) + label {
-    top: 0.3rem;
-    left: 1rem;
-    font-size: 0.75rem;
-    color: var(--verdeGlow);
-    background: var(--hueso);
-    z-index: 3;
+#contador-circular[style*="display: flex"] {
+    display: flex;
+}
+#contador-circular svg {
+    width: 40px;
+    height: 40px;
+    transform: rotate(-90deg);
+    transition: width 0.3s, height 0.3s;
+}
+#contador-circular-barra {
+    transition: stroke 0.25s;
+}
+#contador-circular-num {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    font-family: var(--notoSans);
+    font-weight: 700;
+    z-index: 2;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    transition: color 0.25s;
+    pointer-events: none;
+    color: #1da1f2;
 }
 
-/* POR PROBARSE */
+#contador-caracteres {
+    display: none;
+}
+
+#contador-caracteres {
+    font-size: 0.95em;
+    text-align: center;
+    margin-top: 0.2em;
+    margin-right: 0.5em;
+    font-family: var(--notoSans);
+    transition: color 0.2s;
+    position: absolute;
+    bottom: 150px;
+}
 
 #comentario {
     flex: 1;
     border-radius: 1rem;
     border: none;
+    margin-top: 2em;
     padding: 1em;
-    font-size: 1em;
+    font-size: 1.1em;
     background: var(--hueso);
     outline: none;
     resize: none;
-    min-height: 2.5em;
-    max-width: 80%;
+    min-height: 9em;
+    max-width: 100%;
 }
 
 #blogForm button[type="submit"] {
@@ -184,13 +217,16 @@ footer{
     color: #fff;
     border: none;
     border-radius: 1.375rem;
-    padding: 0.7em 2em;
-    font-size: 1em;
+    padding: 0.7em 2em ;
+    font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    margin: 0;
+    margin: 0em;
+    margin-top: .25em;
     transition: 0.3s;
     height: 3.5rem;
+    align-self: flex-end;
+    /* No margin, no absolute positioning */
 }
 
 #blogForm button[type="submit"]:hover {
@@ -200,12 +236,13 @@ footer{
 
 #blogComentarios {
     background: var(--hueso);
-    padding: 1.5em 1em 1em 1em;
+    padding: 1.5em 1em 1em 2em;
     border-radius: 0 0 2em 2em;
     min-height: 120px;
     max-height: 300px;
     overflow-y: auto;
     margin-top: 1em;
+    margin-bottom: 4em;
     box-shadow: 0 8px 16px -8px rgba(0,0,0,0.25);
 }
 
