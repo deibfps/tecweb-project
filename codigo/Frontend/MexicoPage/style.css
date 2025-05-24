@@ -110,7 +110,7 @@ header nav ul li a:hover {
   padding: 2rem 3rem;
   margin: 3rem 0;
   text-align: left;
-  border-radius: 0; /* sin bordes redondos */
+  border-radius: 3.5rem;
   color: white;
   font-family: var(--especial);
 }
@@ -149,6 +149,29 @@ header nav ul li a:hover {
   margin-top: -2rem;
 }
 
+#estado {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--hueso);
+    border: 1px solid var(--verdeMatcha);
+    border-radius: 1rem;
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    font-size: 1rem;
+    color: var(--verdeMatcha);
+    font-family: var(--texto);
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%237EAB57" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+}
+#estado:focus {
+    outline: 2px solid var(--verdeMatcha);
+}
+
 #estadosChart {
     width: 28rem !important;
     height: 12rem !important;
@@ -156,7 +179,6 @@ header nav ul li a:hover {
     max-height: 100%;
     display: block;
     margin-top: 3rem;
-
 }
 
 /* BIODIVERSIDAD */
@@ -176,12 +198,18 @@ header nav ul li a:hover {
 /* QUIZ */
 .quiz {
   background-color: var(--verdeMatcha);
-  padding: 2rem 1.5rem 3rem;
+  border-radius: 3.5rem;
+  padding: 2rem 2.5rem 3rem;
   margin-top: 3rem;
   color: white;
   text-align: center;
   font-family: var(--texto);
   font-weight: normal;
+
+    input {
+      accent-color: #6E944B;
+    }
+
 }
 
 .quiz h3 {
@@ -223,8 +251,8 @@ header nav ul li a:hover {
 }
 
 .quiz-submit button {
-  background-color: white;
-  color: var(--verdeMatcha);
+  background-color: var(--verdeMatchaLight);
+  color: var(--hueso);
   border: none;
   padding: 0.75rem 2.5rem;
   font-weight: bold;
@@ -251,7 +279,7 @@ footer {
 body button:not(.Btn) {
     padding: 0.8rem 2rem;
     border: none;
-    border-radius: 1.8rem;
+    border-radius: 1rem;
     font-weight: bold;
     cursor: pointer;
     color: var(--verdeMatcha);
@@ -267,7 +295,7 @@ body button:not(.Btn) {
 body button:not(.Btn):hover {
     color: var(--hueso);
     transform: scale(1.1);
-    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatcha); /* Ajuste de sombra */
+    box-shadow: 0.25rem 0.3125rem 1rem -0.25rem var(--verdeMatchaDark); /* Ajuste de sombra */
 }
 body button:not(.Btn)::before {
     content: "";
