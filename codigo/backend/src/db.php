@@ -4,7 +4,7 @@
 function getMySQLi() {
     $host = 'localhost';
     $user = 'root'; // Cambia si usas otro usuario
-    $pass = '';     // Cambia si tienes contraseña
+    $pass = '290105.';     // Cambia si tienes contraseña
     $db   = 'tecweb'; // Cambia por el nombre real
 
     $mysqli = new mysqli($host, $user, $pass, $db);
