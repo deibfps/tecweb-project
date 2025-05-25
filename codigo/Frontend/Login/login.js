@@ -1,20 +1,20 @@
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-    //VALIDACIONES FORMULARIO:
-    
-    if (email.value.trim() === '' || !email.value.includes('@')) {
+    //VALIDACIONES
+
+    if (email === '' || !email.includes('@')) {
         alert('Ingresa un correo válido.');
-        email.focus();
+        document.getElementById('email').focus();
         return;
     }
 
-    if (password.value.length < 6) {
+    if (password.length < 6) {
         alert('La contraseña debe tener al menos 6 caracteres.');
-        password.focus();
+        document.getElementById('password').focus();
         return;
     }
 

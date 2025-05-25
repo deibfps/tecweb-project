@@ -14,33 +14,27 @@ document.getElementById('accountType').addEventListener('change', function() {
 document.getElementById('createAccountForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
     const accountType = document.getElementById('accountType').value;
-    const adminKey = document.getElementById('adminKey');
+    const adminKey = document.getElementById('adminKey').value;
 
-    //VALIDACIONES DE LLENADO DE CAMPOS:
+    //VALIDACIONES
+
+    if (email === '' || !email.includes('@')) {
+        alert('Ingresa un correo válido.');
+        document.getElementById('email').focus();
+        return;
+    }
+
+    if (password.length < 6) {
+        alert('La contraseña debe tener al menos 6 caracteres.');
+        document.getElementById('password').focus();
+        return;
+    }
 
     if (accountType === 'admin' && adminKey !== 'ADMIN33') {
         alert('Clave de administrador incorrecta');
-        return;
-    }
-
-    if (email.value.trim() === '' || !email.value.includes('@')) {
-        alert('Ingresa un correo válido.');
-        email.focus();
-        return;
-    }
-
-    if (password.value.length < 6) {
-        alert('La contraseña debe tener al menos 6 caracteres.');
-        password.focus();
-        return;
-    }
-
-    if (accountType === 'admin' && adminKey.value !== 'ADMIN33') {
-        alert('Clave de administrador incorrecta.');
-        adminKey.focus();
         return;
     }
 
@@ -49,8 +43,8 @@ document.getElementById('createAccountForm').addEventListener('submit', function
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            email:email.value,
-            password: password.value,
+            email,
+            password,
             rol: accountType
         }),
         dataType: 'json',
