@@ -1,7 +1,7 @@
 
 # 🌱 Plantasia
 
-##### Proyecto final para la materia de Tecnologías Web.
+Proyecto final para la materia de Tecnologías Web.
 
 ## ¿Sobre que trata?
 
@@ -39,7 +39,6 @@ Esto permite a los usuarios aprender🧪, consultar🔎, visualizar gráficas�
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" height="40" alt="vscode logo"  />
 </div>
-###
 
 ## Como ejecutar 🚀
 
@@ -47,11 +46,11 @@ Esto permite a los usuarios aprender🧪, consultar🔎, visualizar gráficas�
 
 ##### 2. Iniciar el servidor de php, escribiendo en la terminar integrada de Visual Studio Code: `cd codigo/backend/public`
 
-###### 4. Por consiguiente: `php -S localhost:8080`
+##### 4. Por consiguiente: `php -S localhost:8080`
 
-###### 5. Por último abrir el `index.html` ubicado en la carpeta 'Home' para una mejor experiencia.
+##### 5. Por último abrir el `index.html` ubicado en la carpeta 'Home' para una mejor experiencia.
 
-## Autores
+## Autores 🧑‍🎨
 
 - David Ponce Santos
 - Manuela Yaslie Chavéz Hernández
