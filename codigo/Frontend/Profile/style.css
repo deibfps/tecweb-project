@@ -114,16 +114,18 @@ form {
 
 form .btn-submit {
     margin-top: 1.5rem;
+    margin-bottom: 5rem;
     left: 0px;
     bottom: 2px;
 }
 
     #logout {
-        bottom: 175px;
-        left: 865px;
+        bottom: 240px;
+        left: 871px;
         background-color: var(--hueso);
         color: var(--TW);
         border-color: var(--TW);
+        margin-top: 12.5px;
     }
 
     #logout::before {
