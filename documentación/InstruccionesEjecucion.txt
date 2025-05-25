@@ -65,7 +65,7 @@ por ejemplo: file:///C:/xampp/htdocs/tecweb-project/codigo/Frontend/Home/index.h
 6. Accede con los datos de la cuenta que acabas de crear
 
 Eso es todo, no deberia de haber problema, si las dudas 
-persisten o hay un eror desconocido, manden mensaje en el grupo.
+persisten o hay un error desconocido, manden mensaje en el grupo.
 
 
 
