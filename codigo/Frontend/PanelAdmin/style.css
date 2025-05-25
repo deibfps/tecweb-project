@@ -70,7 +70,7 @@ body button::before {
     background-color: var(--verdeMatcha);
     transform: skewX(45deg);
     z-index: -1;
-    transition: width 0.3s ease; /* Reducir la duración para mejor experiencia */
+    transition: width .5s ease; /* Reducir la duración para mejor experiencia */
 }
 body button:hover::before {
     width: 250%;
@@ -178,11 +178,12 @@ footer{
     padding: 0.5em 1.2em;
     font-size: 1em;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: 0.3s;
 }
 
 #usersTable td button:hover {
     background: #a94442;
+    transition: 0.3s;
 }
 
 #admin-dashboard {
