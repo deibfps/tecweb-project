@@ -1,8 +1,22 @@
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    //VALIDACIONES FORMULARIO:
+    
+    if (email.value.trim() === '' || !email.value.includes('@')) {
+        alert('Ingresa un correo válido.');
+        email.focus();
+        return;
+    }
+
+    if (password.value.length < 6) {
+        alert('La contraseña debe tener al menos 6 caracteres.');
+        password.focus();
+        return;
+    }
 
     $.ajax({
         url: 'http://localhost:8080/api/login',
