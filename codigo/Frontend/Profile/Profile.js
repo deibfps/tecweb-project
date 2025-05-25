@@ -50,6 +50,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const fecha_nacimiento = document.getElementById('fecha-nacimiento').value;
         const biografia = document.getElementById('biografia').value;
 
+        //VALIDACIONES
+
+        if (!nombre.trim() || !apellido.trim() || !pronombres.trim() || !fecha_nacimiento.trim()) {
+            alert('Por favor, completa todos los campos obligatorios.');
+            return;
+        }
+
+        if (nombre.length > 50 || apellido.length > 50) {
+            alert('Nombre y apellido no deben superar los 50 caracteres.');
+            return;
+        }
+
+        if (biografia.length > 1000) {
+            alert('La biografía no puede tener más de 1000 caracteres.');
+            return;
+        }
+
+        const fechaActual = new Date();
+        const fechaIngresada = new Date(fecha_nacimiento);
+        if (fechaIngresada > fechaActual) {
+            alert('La fecha de nacimiento no puede ser en el futuro.');
+            return;
+        }
+
         $.ajax({
             url: 'http://localhost:8080/api/perfil',
             method: 'POST',

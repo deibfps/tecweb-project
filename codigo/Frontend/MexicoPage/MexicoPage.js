@@ -10,7 +10,7 @@ function bloquearEstado(nombre_estado) {
     const btn = document.getElementById('enviarEstadoBtn');
     if (nombre_estado) {
         select.value = nombre_estado;
-        select.disabled = true;
+        select.disabled = true;6
         btn.textContent = 'Enviado';
         btn.disabled = true;
     } else {
