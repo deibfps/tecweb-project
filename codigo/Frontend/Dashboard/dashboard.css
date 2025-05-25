@@ -1,0 +1,142 @@
+@import url('../variables.css');
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--hueso);
+    margin: 0;
+       padding-top: 4rem; /* Asegura que el contenido no quede oculto detrás de la barra fija */
+}
+h1{
+    font-family: var(--especial);
+    font-size: 3rem;
+    color: var(--verdeMatcha);
+    text-align: center;
+    margin-top: 2rem;
+}
+/* ''''''''''''''''''''''''''ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+header {
+    background-color: var(--hueso); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; /* <- Esto lo necesitábamos sí o sí */
+    align-items: center; 
+    justify-content: space-between; /* <- Distribuye h1 a la izquierda y nav a la derecha */
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+/* Estilo de plantasia*/
+header h1 {
+    font-family: var(--especial); /* Fuente especial para el logo */
+    font-size: 1.5rem; /* Tamaño adaptable */
+    color: var(--verdeMatcha); /* Color verde matcha */
+    margin: 0;
+    padding: 0 2rem;
+}
+/* Estilo de los enlaces */
+header nav ul {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Flexbox para alinear los enlaces horizontalmente */
+    gap: 3rem; /* Espaciado entre los enlaces */
+    margin: 0;
+    padding: 0 3rem;
+    
+}
+header nav ul li a {
+    font-family: var(--especial); /* Fuente para los enlaces */
+    font-size: 1rem; /* Tamaño adaptable */
+    color: var(--negro); /* Color negro */
+    text-decoration: none; /* Elimina el subrayado */
+    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+header nav ul li a:hover {
+    color: var(--verdeMatcha); /* Cambia a verde matcha al pasar el cursor */
+}
+/* ''''''''''''''''''''''''''FIN DE ESTILO DE BARRA DE NAVEGACION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+.card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 2rem 1.5rem;
+    min-width: 300px;
+    max-width: 350px;
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #7eab57;
+}
+.big-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #7eab57;
+    margin-top: 1.5rem;
+}
+canvas {
+    max-width: 260px;
+    max-height: 260px;
+}
+.filters {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.filters label {
+    font-size: 1rem;
+    color: #7eab57;
+}
+.filters input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+.filters button {
+    background: #7eab57;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.filters button:hover {
+    background: #6a9d4e;
+}
+@media (max-width: 900px) {
+    .dashboard-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 90vw;
+        max-width: 95vw;
+    }
+}
+/* ''''''''''''''''''''''''''PIE DE PAGINA SECTION '''''''''''''''''''''''''''''''''''''''''''''''''*/
+footer{
+    background-color: var(--verdeMatcha);
+    color: var(--hueso);
+    padding: 2rem 6rem
+
+}
+
+/* ''''''''''''''''''''''''''FIN DE PIE DE PAGINA SECTION '''*/

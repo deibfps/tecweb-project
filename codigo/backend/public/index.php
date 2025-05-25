@@ -12,6 +12,7 @@ require_once __DIR__ . '/../src/db.php';
 
 use Slim\Factory\AppFactory;
 use Slim\Middleware\BodyParsingMiddleware;
+use Slim\Psr7\Factory\StreamFactory;
 
 $app = AppFactory::create();
 $app->addBodyParsingMiddleware();
@@ -439,11 +440,23 @@ $app->delete('/api/blog/{id_blog}', function ($request, $response, $args) {
 // Total de usuarios
 $app->get('/api/dashboard/usuarios', function ($request, $response, $args) {
     $mysqli = getMySQLi();
-    $result = $mysqli->query("SELECT COUNT(*) as total FROM usuario");
-    $total = $result->fetch_assoc()['total'];
+
+    $query = "SELECT COUNT(*) as total FROM USUARIO";
+    $result = $mysqli->query($query);
+
+    if ($row = $result->fetch_assoc()) {
+        $total = $row['total'];
+    } else {
+        $total = 0;
+    }
+
     $mysqli->close();
-    $response->getBody()->write(json_encode(['total' => $total]));
-    return $response->withHeader('Content-Type', 'application/json');
+
+    // Usa StreamFactory para crear el cuerpo de la respuesta
+    $streamFactory = new StreamFactory();
+    $body = $streamFactory->createStream(json_encode(['total' => $total]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withBody($body);
 });
 
 // Total de comentarios
@@ -459,16 +472,24 @@ $app->get('/api/dashboard/comentarios', function ($request, $response, $args) {
 // Usuarios por pronombres
 $app->get('/api/dashboard/pronombres', function ($request, $response, $args) {
     $mysqli = getMySQLi();
-    $result = $mysqli->query("SELECT pronombres, COUNT(*) as total FROM perfil_usuario GROUP BY pronombres");
+
+    $query = "SELECT pronombres, COUNT(*) as total FROM PERFIL_USUARIO GROUP BY pronombres ORDER BY total DESC";
+    $result = $mysqli->query($query);
+
     $labels = [];
     $values = [];
+
     while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['pronombres'] ?: 'Sin especificar';
-        $values[] = $row['total'];
+        $labels[] = $row['pronombres'];
+        $values[] = (int) $row['total'];
     }
+
     $mysqli->close();
-    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
-    return $response->withHeader('Content-Type', 'application/json');
+
+    $streamFactory = new StreamFactory();
+    $body = $streamFactory->createStream(json_encode(['labels' => $labels, 'values' => $values]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withBody($body);
 });
 
 // Usuarios vs Administradores
@@ -516,6 +537,216 @@ $app->get('/api/dashboard/foro-actividad', function ($request, $response, $args)
     }
     $mysqli->close();
     $response->getBody()->write(json_encode(['labels' => $finalLabels, 'values' => $finalValues]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Estados más frecuentes
+$app->get('/api/dashboard/estados', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+
+    $query = "SELECT nombre_estado, COUNT(*) as total FROM ESTADOS GROUP BY nombre_estado ORDER BY total DESC";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $values = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['nombre_estado'];
+        $values[] = (int) $row['total'];
+    }
+
+    $mysqli->close();
+
+    $streamFactory = new StreamFactory();
+    $body = $streamFactory->createStream(json_encode(['labels' => $labels, 'values' => $values]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withBody($body);
+});
+
+$app->get('/api/dashboard/activos', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+
+    $query = "SELECT USUARIO.correo, COUNT(BLOG.id_blog) as total FROM BLOG INNER JOIN USUARIO ON BLOG.id_usuario = USUARIO.id_usuario GROUP BY BLOG.id_usuario ORDER BY total DESC LIMIT 5";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $values = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['correo'];
+        $values[] = (int) $row['total'];
+    }
+
+    $mysqli->close();
+
+    $streamFactory = new StreamFactory();
+    $body = $streamFactory->createStream(json_encode(['labels' => $labels, 'values' => $values]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withBody($body);
+});
+
+$app->get('/api/dashboard/crecimiento', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $query = "SELECT DATE_FORMAT(fecha_creacion, '%Y-%m') as mes, COUNT(*) as total FROM USUARIO GROUP BY mes ORDER BY mes ASC";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['mes'];
+        $values[] = (int) $row['total'];
+    }
+
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/api/dashboard/edades', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $query = "
+        SELECT
+            CASE
+                WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 25 THEN '18-25'
+                WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 26 AND 35 THEN '26-35'
+                WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 36 AND 45 THEN '36-45'
+                ELSE '46+'
+            END as rango_edad,
+            COUNT(*) as total
+        FROM PERFIL_USUARIO
+        GROUP BY rango_edad";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['rango_edad'];
+        $values[] = (int) $row['total'];
+    }
+
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/', function ($request, $response, $args) {
+    $response->getBody()->write(json_encode([
+        'success' => true,
+        'message' => 'Bienvenido a la API de Plantasia'
+    ]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/api/dashboard/quiz-preguntas', function ($request, $response, $args) {
+    $mysqli = getMySQLi();
+    $query = "
+        SELECT
+            'Pregunta 1' as pregunta, SUM(pregunta_1) as si, COUNT(*) - SUM(pregunta_1) as no FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 2', SUM(pregunta_2), COUNT(*) - SUM(pregunta_2) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 3', SUM(pregunta_3), COUNT(*) - SUM(pregunta_3) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 4', SUM(pregunta_4), COUNT(*) - SUM(pregunta_4) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 5', SUM(pregunta_5), COUNT(*) - SUM(pregunta_5) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 6', SUM(pregunta_6), COUNT(*) - SUM(pregunta_6) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 7', SUM(pregunta_7), COUNT(*) - SUM(pregunta_7) FROM RESPUESTAS_QUIZ
+        UNION ALL
+        SELECT
+            'Pregunta 8', SUM(pregunta_8), COUNT(*) - SUM(pregunta_8) FROM RESPUESTAS_QUIZ";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $si = [];
+    $no = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['pregunta'];
+        $si[] = (int) $row['si'];
+        $no[] = (int) $row['no'];
+    }
+
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'si' => $si, 'no' => $no]));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/api/dashboard/configuracion', function ($request, $response, $args) {
+    session_start();
+
+    // Verifica si el usuario es administrador
+    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+        $response->getBody()->write(json_encode(['error' => 'Acceso denegado']));
+        return $response->withStatus(403)->withHeader('Content-Type', 'application/json');
+    }
+
+    // Configuración de las gráficas (puedes guardar esto en la base de datos)
+    $configuracion = [
+        'estadoChart' => true,
+        'pronombresChart' => true,
+        'activosChart' => true,
+        'foroActividadChart' => true,
+        'rolesChart' => true,
+        'crecimientoChart' => true,
+        'edadesChart' => true,
+        'quizPreguntasChart' => true
+    ];
+
+    $response->getBody()->write(json_encode($configuracion));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->post('/api/dashboard/configuracion', function ($request, $response, $args) {
+    session_start();
+
+    // Verifica si el usuario es administrador
+    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+        return $response->withStatus(403)->withHeader('Content-Type', 'application/json')
+                        ->write(json_encode(['error' => 'Acceso denegado']));
+    }
+
+    // Obtén los datos enviados desde el frontend
+    $data = json_decode($request->getBody(), true);
+
+    // Aquí puedes guardar la configuración en la base de datos o en un archivo
+    // Por simplicidad, lo guardaremos en una variable de sesión
+    $_SESSION['configuracion'] = $data;
+
+    return $response->withHeader('Content-Type', 'application/json')
+                    ->write(json_encode(['success' => true]));
+});
+
+$app->get('/api/dashboard/estado', function ($request, $response, $args) {
+    session_start();
+
+    // Verifica si la gráfica está habilitada
+    if (isset($_SESSION['configuracion']['estadoChart']) && !$_SESSION['configuracion']['estadoChart']) {
+        return $response->withStatus(403)->withHeader('Content-Type', 'application/json')
+                        ->write(json_encode(['error' => 'Gráfica deshabilitada']));
+    }
+
+    // Código para devolver los datos de la gráfica
+    $mysqli = getMySQLi();
+    $query = "SELECT nombre_estado, COUNT(*) as total FROM ESTADOS GROUP BY nombre_estado ORDER BY total DESC";
+    $result = $mysqli->query($query);
+
+    $labels = [];
+    $values = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['nombre_estado'];
+        $values[] = (int) $row['total'];
+    }
+
+    $mysqli->close();
+    $response->getBody()->write(json_encode(['labels' => $labels, 'values' => $values]));
     return $response->withHeader('Content-Type', 'application/json');
 });
 

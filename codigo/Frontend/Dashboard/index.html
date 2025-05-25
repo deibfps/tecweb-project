@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Plantasia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+        <header>
+        <h1>Plantasia</h1>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="../Home/index.html">Home</a></li>
+                <li><a href="../Home/index.html#SobreNosotros">Nosotros</a></li>
+                <li><a href="../Profile/index.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+        <h1>Conoce a la comunidad </h1>
+    <main>
+        <section class="dashboard-cards">
+            <div class="card">
+                <h2>Total de miembros de la comunidad</h2>
+                <div id="totalUsuarios" class="big-number">0</div>
+            </div>
+            <div class="card">
+                <h2>Estado con más miembros</h2>
+                <canvas id="estadoChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Pronombres más usados</h2>
+                <canvas id="pronombresChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Usuarios más activos en el foro</h2>
+                <canvas id="activosChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Actividad del foro (últimos 5 días)</h2>
+                <canvas id="foroActividadChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Usuarios vs Administradores</h2>
+                <canvas id="rolesChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Crecimiento de la comunidad</h2>
+                <canvas id="crecimientoChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Distribución de edades</h2>
+                <canvas id="edadesChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Resultados del quiz por pregunta</h2>
+                <canvas id="quizPreguntasChart"></canvas>
+            </div>
+        </section>
+        <div id="adminControls" style="display: none;">
+            <h3>Controles de administrador</h3>
+            <label><input type="checkbox" id="toggleEstadoChart" checked> Estado con más miembros</label><br>
+            <label><input type="checkbox" id="togglePronombresChart" checked> Pronombres más usados</label><br>
+            <label><input type="checkbox" id="toggleActivosChart" checked> Usuarios más activos en el foro</label><br>
+            <label><input type="checkbox" id="toggleForoActividadChart" checked> Actividad del foro</label><br>
+            <label><input type="checkbox" id="toggleRolesChart" checked> Usuarios vs Administradores</label><br>
+            <label><input type="checkbox" id="toggleCrecimientoChart" checked> Crecimiento de la comunidad</label><br>
+            <label><input type="checkbox" id="toggleEdadesChart" checked> Distribución de edades</label><br>
+            <label><input type="checkbox" id="toggleQuizPreguntasChart" checked> Resultados del quiz por pregunta</label><br>
+            <button id="guardarConfiguracion">Guardar configuración</button>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+        <footer>
+        <div id="Plantasia">
+        Plantasia
+        </div>
+        <div id="Copyright">
+        Todos los derechos reservados<br>
+        © 2025 Plantasia
+        </div>
+    </footer>
+</body>
+</html>
