@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '../Profile/index.html';
         }
     }, 'json').fail(function() {
-        alert('Error al cargar el perfil');
+        mostrarMensaje('Error al cargar el perfil');
     });
 });
 

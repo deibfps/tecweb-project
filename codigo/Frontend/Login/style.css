@@ -147,7 +147,7 @@ main {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f44336; /* rojo por defecto */
+    background-color: #f44336;
     color: white;
     padding: 1em 2em;
     border-radius: 8px;
@@ -159,7 +159,7 @@ main {
     transition: opacity 0.3s ease;
 }
 .mensaje-flotante.ok {
-    background-color: #4CAF50; /* verde para mensajes OK */
+    background-color: #4CAF50; 
 }
 .oculto {
     display: none;
