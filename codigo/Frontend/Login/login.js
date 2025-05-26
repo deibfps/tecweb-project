@@ -1,3 +1,17 @@
+//Función para mostrar el mensaje de alerta
+function mostrarMensaje(texto, tipo = 'error') {
+    const msg = document.getElementById('mensajeFlotante');
+    if (!msg) return;
+
+    msg.textContent = texto;
+    msg.classList.remove('oculto', 'ok');
+    if (tipo === 'ok') msg.classList.add('ok');
+
+    setTimeout(() => {
+        msg.classList.add('oculto');
+    }, 3000);
+}
+
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -7,13 +21,13 @@ document.querySelector('form').addEventListener('submit', function(e) {
     //VALIDACIONES
 
     if (email === '' || !email.includes('@')) {
-        alert('Ingresa un correo válido.');
+        mostrarMensaje('Ingresa un correo válido.');
         document.getElementById('email').focus();
         return;
     }
 
     if (password.length < 6) {
-        alert('La contraseña debe tener al menos 6 caracteres.');
+        mostrarMensaje('La contraseña debe tener al menos 6 caracteres.');
         document.getElementById('password').focus();
         return;
     }
@@ -31,11 +45,11 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 localStorage.setItem('id_usuario', data.id_usuario);
                 window.location.href = '../Home/index.html';
             } else {
-                alert(data.message);
+                mostrarMensaje(data.message);
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 });
