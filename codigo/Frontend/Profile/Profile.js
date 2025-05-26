@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = '../ProfileInfo/index.html';
             }
         }, 'json').fail(function() {
-            alert('Error al verificar perfil');
+            mostrarMensaje('Error al verificar perfil');
         });
     } else {
         // Si es edición, autorrellena el formulario

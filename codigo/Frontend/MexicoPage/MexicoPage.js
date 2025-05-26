@@ -117,11 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
         btnEstado.addEventListener('click', function() {
             const estado = document.getElementById('estado').value;
             if (!estado) {
-                alert('Selecciona tu estado');
+                mostrarMensaje('Selecciona tu estado');
                 return;
             }
             if (!id_usuario) {
-                alert('Debes iniciar sesión');
+                mostrarMensaje('Debes iniciar sesión');
                 window.location.href = '../Login/index.html';
                 return;
             }
@@ -137,11 +137,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         bloquearEstado(estado);
                         setTimeout(cargarGraficaEstados, 500);
                     } else {
-                        alert(data.message || 'Error al guardar estado');
+                        mostrarMensaje(data.message || 'Error al guardar estado');
                     }
                 },
                 error: function() {
-                    alert('Error de conexión con el servidor');
+                    mostrarMensaje('Error de conexión con el servidor');
                 }
             });
         });
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btnQuiz) {
         btnQuiz.addEventListener('click', function() {
             if (!id_usuario) {
-                alert('Debes iniciar sesión');
+                mostrarMensaje('Debes iniciar sesión');
                 window.location.href = '../Login/index.html';
                 return;
             }
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (radio.checked) valor = radio.nextSibling.textContent.trim() === "Sí" ? 1 : 0;
                 }
                 if (valor === null) {
-                    alert('Responde todas las preguntas');
+                    mostrarMensaje('Responde todas las preguntas');
                     return;
                 }
                 respuestas.push(radios[0].checked ? 1 : 0);
@@ -204,11 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         const resultado = calcularResultado(respuestas.map(v => !!v));
                         mostrarResultadoQuiz(resultado);
                     } else {
-                        alert(data.message || 'Error al guardar respuestas');
+                        mostrarMensaje(data.message || 'Error al guardar respuestas');
                     }
                 },
                 error: function() {
-                    alert('Error de conexión con el servidor');
+                    mostrarMensaje('Error de conexión con el servidor');
                 }
             });
         });
