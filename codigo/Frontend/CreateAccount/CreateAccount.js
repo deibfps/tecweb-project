@@ -22,19 +22,19 @@ document.getElementById('createAccountForm').addEventListener('submit', function
     //VALIDACIONES
 
     if (email === '' || !email.includes('@')) {
-        alert('Ingresa un correo válido.');
+        mostrarMensaje('Ingresa un correo válido.');
         document.getElementById('email').focus();
         return;
     }
 
     if (password.length < 6) {
-        alert('La contraseña debe tener al menos 6 caracteres.');
+        mostrarMensaje('La contraseña debe tener al menos 6 caracteres.');
         document.getElementById('password').focus();
         return;
     }
 
     if (accountType === 'admin' && adminKey !== 'ADMIN33') {
-        alert('Clave de administrador incorrecta');
+        mostrarMensaje('Clave de administrador incorrecta');
         return;
     }
 
@@ -50,14 +50,14 @@ document.getElementById('createAccountForm').addEventListener('submit', function
         dataType: 'json',
         success: function(data) {
             if (data.success) {
-                alert('Cuenta creada exitosamente');
+                mostrarMensaje('Cuenta creada exitosamente');
                 window.location.href = '../Login/index.html';
             } else {
-                alert(data.message || 'Error al crear la cuenta');
+                mostrarMensaje(data.message || 'Error al crear la cuenta');
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 });
