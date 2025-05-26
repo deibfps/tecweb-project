@@ -53,24 +53,24 @@ document.addEventListener('DOMContentLoaded', function() {
         //VALIDACIONES
 
         if (!nombre.trim() || !apellido.trim() || !pronombres.trim() || !fecha_nacimiento.trim()) {
-            alert('Por favor, completa todos los campos obligatorios.');
+            mostrarMensaje('Por favor, completa todos los campos obligatorios.');
             return;
         }
 
         if (nombre.length > 50 || apellido.length > 50) {
-            alert('Nombre y apellido no deben superar los 50 caracteres.');
+            mostrarMensaje('Nombre y apellido no deben superar los 50 caracteres.');
             return;
         }
 
         if (biografia.length > 1000) {
-            alert('La biografía no puede tener más de 1000 caracteres.');
+            mostrarMensaje('La biografía no puede tener más de 1000 caracteres.');
             return;
         }
 
         const fechaActual = new Date();
         const fechaIngresada = new Date(fecha_nacimiento);
         if (fechaIngresada > fechaActual) {
-            alert('La fecha de nacimiento no puede ser en el futuro.');
+            mostrarMensaje('La fecha de nacimiento no puede ser en el futuro.');
             return;
         }
 
@@ -84,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     window.location.href = '../ProfileInfo/index.html';
                 } else {
-                    alert(data.message || 'Error al guardar perfil');
+                    mostrarMensaje(data.message || 'Error al guardar perfil');
                 }
             },
             error: function() {
-                alert('Error de conexión con el servidor');
+                mostrarMensaje('Error de conexión con el servidor');
             }
         });
     });
