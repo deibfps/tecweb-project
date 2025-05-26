@@ -32,8 +32,10 @@ $(document).ready(function () {
 
             $.post('http://localhost:8080/api/dashboard/configuracion', JSON.stringify(nuevaConfiguracion), function (response) {
                 if (response.success) {
-                    alert('Configuración guardada correctamente.');
-                    location.reload();
+                    mostrarMensaje('Configuración guardada correctamente.', 'ok');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 } else {
                     mostrarMensaje('Error al guardar la configuración.');
                 }

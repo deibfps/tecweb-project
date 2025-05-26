@@ -50,8 +50,10 @@ document.getElementById('createAccountForm').addEventListener('submit', function
         dataType: 'json',
         success: function(data) {
             if (data.success) {
-                mostrarMensaje('Cuenta creada exitosamente');
-                window.location.href = '../Login/index.html';
+                mostrarMensaje('Cuenta creada exitosamente', 'ok');
+                setTimeout(()=>{
+                    window.location.href = '../Login/index.html';
+                }, 2500);     
             } else {
                 mostrarMensaje(data.message || 'Error al crear la cuenta');
             }
