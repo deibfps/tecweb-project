@@ -35,7 +35,7 @@ $(document).ready(function () {
                     alert('Configuración guardada correctamente.');
                     location.reload();
                 } else {
-                    alert('Error al guardar la configuración.');
+                    mostrarMensaje('Error al guardar la configuración.');
                 }
             }, 'json');
         });
