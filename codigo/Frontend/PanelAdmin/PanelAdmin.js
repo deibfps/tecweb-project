@@ -108,11 +108,11 @@ function eliminarUsuario(id_usuario) {
             if (data.success) {
                 location.reload();
             } else {
-                alert('No se pudo eliminar el usuario');
+                mostrarMensaje('No se pudo eliminar el usuario');
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 }
