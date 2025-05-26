@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = '../ProfileInfo/index.html';
             }
         }, 'json').fail(function() {
-            alert('Error al verificar perfil');
+            mostrarMensaje('Error al verificar perfil');
         });
     } else {
         // Si es edición, autorrellena el formulario
@@ -50,6 +50,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const fecha_nacimiento = document.getElementById('fecha-nacimiento').value;
         const biografia = document.getElementById('biografia').value;
 
+        //VALIDACIONES
+
+        if (!nombre.trim() || !apellido.trim() || !pronombres.trim() || !fecha_nacimiento.trim()) {
+            mostrarMensaje('Por favor, completa todos los campos obligatorios.');
+            return;
+        }
+
+        if (nombre.length > 50 || apellido.length > 50) {
+            mostrarMensaje('Nombre y apellido no deben superar los 50 caracteres.');
+            return;
+        }
+
+        if (biografia.length > 1000) {
+            mostrarMensaje('La biografía no puede tener más de 1000 caracteres.');
+            return;
+        }
+
+        const fechaActual = new Date();
+        const fechaIngresada = new Date(fecha_nacimiento);
+        if (fechaIngresada > fechaActual) {
+            mostrarMensaje('La fecha de nacimiento no puede ser en el futuro.');
+            return;
+        }
+
         $.ajax({
             url: 'http://localhost:8080/api/perfil',
             method: 'POST',
@@ -60,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     window.location.href = '../ProfileInfo/index.html';
                 } else {
-                    alert(data.message || 'Error al guardar perfil');
+                    mostrarMensaje(data.message || 'Error al guardar perfil');
                 }
             },
             error: function() {
-                alert('Error de conexión con el servidor');
+                mostrarMensaje('Error de conexión con el servidor');
             }
         });
     });

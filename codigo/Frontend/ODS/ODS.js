@@ -49,11 +49,11 @@ function eliminarComentario(id_blog) {
             if (data.success) {
                 mostrarComentarios();
             } else {
-                alert('No se pudo eliminar el comentario');
+                mostrarMensaje('No se pudo eliminar el comentario');
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 }
@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const comentario = document.getElementById('comentario').value.trim();
         const id_usuario = localStorage.getItem('id_usuario');
         if (!id_usuario) {
-            alert('Debes iniciar sesión');
+            mostrarMensaje('Debes iniciar sesión');
             window.location.href = '../Login/index.html';
             return;
         }
         if (!comentario) {
-            alert('El comentario no puede estar vacío');
+            mostrarMensaje('El comentario no puede estar vacío');
             return;
         }
         $.ajax({
@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('comentario').value = '';
                     mostrarComentarios();
                 } else {
-                    alert(data.message || 'Error al enviar comentario');
+                    mostrarMensaje(data.message || 'Error al enviar comentario');
                 }
             },
             error: function() {
-                alert('Error de conexión con el servidor');
+                mostrarMensaje('Error de conexión con el servidor');
             }
         });
     });

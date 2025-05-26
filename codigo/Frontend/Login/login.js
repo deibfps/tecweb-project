@@ -4,6 +4,20 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
+    //VALIDACIONES
+
+    if (email === '' || !email.includes('@')) {
+        mostrarMensaje('Ingresa un correo válido.');
+        document.getElementById('email').focus();
+        return;
+    }
+
+    if (password.length < 6) {
+        mostrarMensaje('La contraseña debe tener al menos 6 caracteres.');
+        document.getElementById('password').focus();
+        return;
+    }
+
     $.ajax({
         url: 'http://localhost:8080/api/login',
         method: 'POST',
@@ -17,11 +31,11 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 localStorage.setItem('id_usuario', data.id_usuario);
                 window.location.href = '../Home/index.html';
             } else {
-                alert(data.message);
+                mostrarMensaje(data.message);
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 });

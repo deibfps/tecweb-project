@@ -19,8 +19,22 @@ document.getElementById('createAccountForm').addEventListener('submit', function
     const accountType = document.getElementById('accountType').value;
     const adminKey = document.getElementById('adminKey').value;
 
+    //VALIDACIONES
+
+    if (email === '' || !email.includes('@')) {
+        mostrarMensaje('Ingresa un correo válido.');
+        document.getElementById('email').focus();
+        return;
+    }
+
+    if (password.length < 6) {
+        mostrarMensaje('La contraseña debe tener al menos 6 caracteres.');
+        document.getElementById('password').focus();
+        return;
+    }
+
     if (accountType === 'admin' && adminKey !== 'ADMIN33') {
-        alert('Clave de administrador incorrecta');
+        mostrarMensaje('Clave de administrador incorrecta');
         return;
     }
 
@@ -36,14 +50,16 @@ document.getElementById('createAccountForm').addEventListener('submit', function
         dataType: 'json',
         success: function(data) {
             if (data.success) {
-                alert('Cuenta creada exitosamente');
-                window.location.href = '../Login/index.html';
+                mostrarMensaje('Cuenta creada exitosamente', 'ok');
+                setTimeout(()=>{
+                    window.location.href = '../Login/index.html';
+                }, 2500);     
             } else {
-                alert(data.message || 'Error al crear la cuenta');
+                mostrarMensaje(data.message || 'Error al crear la cuenta');
             }
         },
         error: function() {
-            alert('Error de conexión con el servidor');
+            mostrarMensaje('Error de conexión con el servidor');
         }
     });
 });
